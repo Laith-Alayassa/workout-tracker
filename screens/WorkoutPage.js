@@ -1,32 +1,30 @@
 import { View, Text, StyleSheet } from "react-native";
 import React from "react";
-
-const SingleWorkoutLog = (exercise) => {
-  return (
-    <View>
-      <Text>{exercise.exercise.name}</Text>
-      <Text>Shawerma</Text>
-    </View>
-  );
-};
+import ExerciseLog from "../components/singleWorkout/ExerciseLog";
 
 const WorkoutScreen = ({ route }) => {
   const { title, lastPreformed, exercises } = route.params;
   return (
     <View>
-      <Text style={styles.title}>{title}</Text>
+      <View style={styles.titleContainer}>
+        <Text style={styles.title}>⚓️ {title} ⚓️</Text>
+      </View>
       {exercises.map((exercise) => {
-        return <SingleWorkoutLog exercise={exercise}></SingleWorkoutLog>;
+        return <ExerciseLog exercise={exercise}></ExerciseLog>;
       })}
     </View>
   );
 };
 
 const styles = StyleSheet.create({
+  titleContainer: {
+    height: 60,
+    justifyContent: "center",
+    alignItems: "center",
+  },
   title: {
     fontWeight: "bold",
-    fontSize: 20,
-    margin: 20,
+    fontSize: 24,
   },
 });
 export default WorkoutScreen;
