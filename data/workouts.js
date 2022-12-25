@@ -4,9 +4,26 @@ export const workouts = [
     title: "Back Workout",
     lastPreformed: "2 days ago",
     exercises: [
-      "Beck Press: 2 X 4",
-      "triceps cable pulldown: 2 X5",
-      "Cable Press: 2 X 4",
+      {
+        name: "Straight arm pull down",
+        reps: 2,
+        sets: 4,
+      },
+      {
+        name: "Pull Ups",
+        reps: 4,
+        sets: 4,
+      },
+      {
+        name: "Lat Pulldown",
+        reps: 2,
+        sets: 4,
+      },
+      {
+        name: "Back Press",
+        reps: 2,
+        sets: 4,
+      },
     ],
   },
   {
@@ -14,10 +31,26 @@ export const workouts = [
     title: "Legs Workout",
     lastPreformed: "4 days ago",
     exercises: [
-      "Beck Press: 2 X 4",
-      "Squats: 6 X 6",
-      "Lunges: 10 X 4",
-      "Cable Press: 2 X 4",
+      {
+        name: "Straight arm pull down",
+        reps: 2,
+        sets: 4,
+      },
+      {
+        name: "Pull Ups",
+        reps: 4,
+        sets: 4,
+      },
+      {
+        name: "Lat Pulldown",
+        reps: 2,
+        sets: 4,
+      },
+      {
+        name: "Back Press",
+        reps: 2,
+        sets: 4,
+      },
     ],
   },
   {
@@ -25,10 +58,26 @@ export const workouts = [
     title: "Chest Workout",
     lastPreformed: "2 days ago",
     exercises: [
-      "Lunges: 10 X 4",
-      "triceps cable pulldown: 2 X5",
-      "Cable Press: 2 X 4",
-      "Lunges: 10 X 4",
+      {
+        name: "Straight arm pull down",
+        reps: 2,
+        sets: 4,
+      },
+      {
+        name: "Pull Ups",
+        reps: 4,
+        sets: 4,
+      },
+      {
+        name: "Lat Pulldown",
+        reps: 2,
+        sets: 4,
+      },
+      {
+        name: "Back Press",
+        reps: 2,
+        sets: 4,
+      },
     ],
   },
   {
@@ -36,9 +85,26 @@ export const workouts = [
     title: "Back Workout",
     lastPreformed: "2 days ago",
     exercises: [
-      "Beck Press: 2 X 4",
-      "triceps cable pulldown: 2 X5",
-      "Cable Press: 2 X 4",
+      {
+        name: "Straight arm pull down",
+        reps: 2,
+        sets: 4,
+      },
+      {
+        name: "Pull Ups",
+        reps: 4,
+        sets: 4,
+      },
+      {
+        name: "Lat Pulldown",
+        reps: 2,
+        sets: 4,
+      },
+      {
+        name: "Back Press",
+        reps: 2,
+        sets: 4,
+      },
     ],
   },
 ];

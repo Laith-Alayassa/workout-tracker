@@ -30,6 +30,7 @@ export default function App() {
               component={WorkoutScreen}
               options={{
                 headerTitleAlign: "center",
+                title: "Workout Time",
               }}
             />
           </Stack.Navigator>
