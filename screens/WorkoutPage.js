@@ -1,18 +1,18 @@
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, ScrollView } from "react-native";
 import React from "react";
 import ExerciseLog from "../components/singleWorkout/ExerciseLog";
 
 const WorkoutScreen = ({ route }) => {
   const { title, lastPreformed, exercises } = route.params;
   return (
-    <View>
+    <ScrollView>
       <View style={styles.titleContainer}>
         <Text style={styles.title}>⚓️ {title} ⚓️</Text>
       </View>
       {exercises.map((exercise) => {
         return <ExerciseLog exercise={exercise}></ExerciseLog>;
       })}
-    </View>
+    </ScrollView>
   );
 };
 
@@ -21,6 +21,7 @@ const styles = StyleSheet.create({
     height: 60,
     justifyContent: "center",
     alignItems: "center",
+    marginVertical: 20,
   },
   title: {
     fontWeight: "bold",

@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
     right: 0,
     bottom: 0,
     height: 55,
-    backgroundColor: "#EB6440",
+    backgroundColor: "#304FFE",
   },
   barIcons: {
     alignItems: "center",

@@ -1,6 +1,6 @@
 import { useNavigation } from "@react-navigation/native";
 import React from "react";
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, ScrollView } from "react-native";
 import { Card, Title, Paragraph } from "react-native-paper";
 
 const WorkoutCard = ({ workout }) => {
@@ -21,7 +21,9 @@ const WorkoutCard = ({ workout }) => {
       }
     >
       <Card.Content>
-        <Title style={styles.title}>💪 {title}</Title>
+        <View style={styles.titleContainer}>
+          <Title style={styles.title}>💪 {title}</Title>
+        </View>
         <Paragraph style={styles.paragraph}>
           Last Performed: {lastPreformed}
         </Paragraph>
@@ -47,7 +49,23 @@ const styles = StyleSheet.create({
     marginTop: 40,
     marginHorizontal: 18,
   },
-  title: { color: "#395B64", marginBottom: 10 },
+  titleContainer: {
+    backgroundColor: "#304FFE",
+    borderRadius: 10,
+    padding: 20,
+    marginBottom: 10,
+
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 3,
+    },
+    shadowOpacity: 0.27,
+    shadowRadius: 4.65,
+
+    elevation: 6,
+  },
+  title: { color: "white" },
   paragraph: {
     color: "#395B64",
     marginBottom: 10,
