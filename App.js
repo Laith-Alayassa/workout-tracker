@@ -8,6 +8,7 @@ import {
   Provider as PaperProvider,
 } from "react-native-paper";
 import { theme } from "./styles/theme";
+import WorkoutScreen from "./screens/WorkoutPage";
 
 const Stack = createNativeStackNavigator();
 
@@ -20,6 +21,13 @@ export default function App() {
             <Stack.Screen
               name="Home"
               component={HomeScreen}
+              options={{
+                headerTitleAlign: "center",
+              }}
+            />
+            <Stack.Screen
+              name="WorkoutScreen"
+              component={WorkoutScreen}
               options={{
                 headerTitleAlign: "center",
               }}
