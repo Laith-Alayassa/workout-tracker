@@ -1,5 +1,23 @@
 import { View, Text, ScrollView, StyleSheet } from "react-native";
-import React from "react";
+import React, { useState } from "react";
+import { Checkbox } from "react-native-paper";
+
+const Set = () => {
+  const [checked, setChecked] = useState(false);
+  return (
+    <View style={{ flexDirection: "row", alignItems: "center" }}>
+      <Text>4 reps</Text>
+      <View style={styles.Checkbox}>
+        <Checkbox
+          status={checked ? "checked" : "unchecked"}
+          onPress={() => {
+            setChecked(!checked);
+          }}
+        />
+      </View>
+    </View>
+  );
+};
 
 const ExerciseLog = ({ exercise }) => {
   const name = exercise.name;
@@ -18,11 +36,7 @@ const ExerciseLog = ({ exercise }) => {
       </View>
       <ScrollView>
         {setsList.map((set) => {
-          return (
-            <View>
-              <Text>1 set</Text>
-            </View>
-          );
+          return <Set />;
         })}
       </ScrollView>
     </View>
@@ -67,6 +81,21 @@ const styles = StyleSheet.create({
     fontWeight: "500",
     fontSize: 18,
     color: "white",
+  },
+  Checkbox: {
+    margin: 10,
+
+    backgroundColor: "rgba(158, 150, 150, .2)",
+    borderRadius: 8,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 3,
+    },
+    shadowOpacity: 0.27,
+    shadowRadius: 4.65,
+
+    elevation: 6,
   },
 });
 
