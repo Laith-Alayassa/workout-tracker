@@ -1,5 +1,5 @@
-import { View, Text, ScrollView, StyleSheet, Platform } from "react-native";
-import React, { useState } from "react";
+import { View, Text, StyleSheet, Platform } from "react-native";
+import { useState } from "react";
 import { Checkbox } from "react-native-paper";
 import { useNavigation } from "@react-navigation/native";
 
@@ -8,7 +8,7 @@ const Set = ({ index }) => {
   const navigation = useNavigation();
   return (
     <View style={styles.setRow}>
-      <Text>{index} </Text>
+      <Text>{index + 1}</Text>
       <Text>4 reps</Text>
       <View
         // checkbox have different styles on Android
@@ -43,16 +43,17 @@ const ExerciseLog = ({ exercise }) => {
       <View style={styles.titleContainer}>
         <Text style={styles.title}>{name}</Text>
       </View>
-      <ScrollView>
-        <View style={styles.setRow}>
-          <Text>Set</Text>
-          <Text>Reps</Text>
-          <Text>Done</Text>
-        </View>
+
+      <View style={styles.setRow}>
+        <Text>Set</Text>
+        <Text>Reps</Text>
+        <Text>Done</Text>
+      </View>
+      <View>
         {setsList.map((set, index) => {
           return <Set index={index} />;
         })}
-      </ScrollView>
+      </View>
     </View>
   );
 };
