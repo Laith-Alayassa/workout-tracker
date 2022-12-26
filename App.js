@@ -10,6 +10,7 @@ import {
 import { theme } from "./styles/theme";
 import WorkoutScreen from "./screens/WorkoutPage";
 import TimerScreen from "./screens/TimerScreen";
+import StopWatch from "./components/shared/StopWatch";
 
 const Stack = createNativeStackNavigator();
 
@@ -31,12 +32,20 @@ export default function App() {
               component={WorkoutScreen}
               options={{
                 headerTitleAlign: "center",
-                title: "Workout Time",
+                headerTitle: (props) => <StopWatch />,
               }}
             />
             <Stack.Screen
               name="Timer"
               component={TimerScreen}
+              options={{
+                headerTitleAlign: "center",
+                title: "Timer",
+              }}
+            />
+            <Stack.Screen
+              name="StopWatch"
+              component={StopWatch}
               options={{
                 headerTitleAlign: "center",
                 title: "Timer",
