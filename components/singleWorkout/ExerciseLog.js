@@ -1,4 +1,4 @@
-import { View, Text, ScrollView, StyleSheet } from "react-native";
+import { View, Text, ScrollView, StyleSheet, Platform } from "react-native";
 import React, { useState } from "react";
 import { Checkbox } from "react-native-paper";
 import { useNavigation } from "@react-navigation/native";
@@ -10,8 +10,13 @@ const Set = ({ index }) => {
     <View style={styles.setRow}>
       <Text>{index} </Text>
       <Text>4 reps</Text>
-      <View style={styles.Checkbox}>
+      <View
+        // checkbox have different styles on Android
+        // Instead of overriding them -if possible- I will use default Android checkbox for now
+        style={Platform.OS === "ios" ? styles.checkbox : styles.checkboxAndroid}
+      >
         <Checkbox
+          color="#007AFF"
           status={checked ? "checked" : "unchecked"}
           onPress={() => {
             if (!checked) {
@@ -91,7 +96,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     color: "white",
   },
-  Checkbox: {
+  checkbox: {
     margin: 10,
 
     backgroundColor: "rgba(158, 150, 150, .2)",
@@ -105,6 +110,9 @@ const styles = StyleSheet.create({
     shadowRadius: 4.65,
 
     elevation: 6,
+  },
+  checkboxAndroid: {
+    margin: 10,
   },
   setRow: {
     flexDirection: "row",
