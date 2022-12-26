@@ -31,12 +31,18 @@ const Timer = () => {
       </View>
 
       <View style={styles.buttonsContainer}>
+        {/* Styling to increase the pressable area */}
         <TouchableOpacity
+          style={{
+            alignSelf: "stretch",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
           onPress={() => {
             setSeconds((seconds) => Math.max(seconds - 10, 0));
           }}
         >
-          <Text style={{ color: "#007AFF", fontSize: 40 }}>-</Text>
+          <Text style={{ color: "#007AFF", fontSize: 40 }}> - </Text>
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() => {
