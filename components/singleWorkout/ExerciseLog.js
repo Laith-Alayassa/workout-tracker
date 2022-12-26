@@ -3,13 +3,13 @@ import { useState } from "react";
 import { Checkbox } from "react-native-paper";
 import { useNavigation } from "@react-navigation/native";
 
-const Set = ({ index }) => {
+const Set = ({ index, reps }) => {
   const [checked, setChecked] = useState(false);
   const navigation = useNavigation();
   return (
     <View style={styles.setRow}>
       <Text>{index + 1}</Text>
-      <Text>4 reps</Text>
+      <Text>{reps} reps</Text>
       <View
         // checkbox have different styles on Android
         // Instead of overriding them -if possible- I will use default Android checkbox for now
@@ -45,13 +45,13 @@ const ExerciseLog = ({ exercise }) => {
       </View>
 
       <View style={styles.setRow}>
-        <Text>Set</Text>
-        <Text>Reps</Text>
-        <Text>Done</Text>
+        <Text style={{ color: "#007AFF" }}>Set</Text>
+        <Text style={{ color: "#007AFF" }}>Reps</Text>
+        <Text style={{ color: "#007AFF" }}>Done</Text>
       </View>
       <View>
         {setsList.map((set, index) => {
-          return <Set index={index} />;
+          return <Set index={index} reps={reps} />;
         })}
       </View>
     </View>
@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
     elevation: 6,
   },
   titleContainer: {
-    backgroundColor: "#6200EA",
+    backgroundColor: "#007AFF",
     borderRadius: 10,
     padding: 20,
     marginBottom: 10,

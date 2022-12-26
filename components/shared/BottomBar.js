@@ -1,7 +1,9 @@
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/native";
 
 const BottomBar = () => {
+  const navigation = useNavigation();
   return (
     <View style={styles.BottomBar}>
       <TouchableOpacity style={styles.barIcons}>
@@ -12,7 +14,10 @@ const BottomBar = () => {
         <Ionicons name="time" size={24} color="white" />
         <Text style={{ color: "white" }}>History</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.barIcons}>
+      <TouchableOpacity
+        style={styles.barIcons}
+        onPress={() => navigation.navigate("CreateTemplate")}
+      >
         <Ionicons name="add-circle" size={24} color="white" />
         <Text style={{ color: "white" }}>New Gainz</Text>
       </TouchableOpacity>

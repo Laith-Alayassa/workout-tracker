@@ -8,9 +8,10 @@ import {
   Provider as PaperProvider,
 } from "react-native-paper";
 import { theme } from "./styles/theme";
-import WorkoutScreen from "./screens/WorkoutPage";
+import WorkoutScreen from "./screens/WorkoutScreen";
 import TimerScreen from "./screens/TimerScreen";
 import StopWatch from "./components/shared/StopWatch";
+import CreateTemplate from "./screens/CreateTemplate";
 
 const Stack = createNativeStackNavigator();
 
@@ -49,6 +50,14 @@ export default function App() {
               options={{
                 headerTitleAlign: "center",
                 title: "Timer",
+              }}
+            />
+            <Stack.Screen
+              name="CreateTemplate"
+              component={CreateTemplate}
+              options={{
+                headerTitleAlign: "center",
+                title: "🔨 Create Template 🔨",
               }}
             />
           </Stack.Navigator>
