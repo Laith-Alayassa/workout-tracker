@@ -1,9 +1,11 @@
 import { View, Text, ScrollView, StyleSheet } from "react-native";
 import React, { useState } from "react";
 import { Checkbox } from "react-native-paper";
+import { useNavigation } from "@react-navigation/native";
 
 const Set = ({ index }) => {
   const [checked, setChecked] = useState(false);
+  const navigation = useNavigation();
   return (
     <View style={styles.setRow}>
       <Text>{index} </Text>
@@ -12,6 +14,9 @@ const Set = ({ index }) => {
         <Checkbox
           status={checked ? "checked" : "unchecked"}
           onPress={() => {
+            if (!checked) {
+              navigation.navigate("Timer");
+            }
             setChecked(!checked);
           }}
         />
