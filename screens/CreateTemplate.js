@@ -6,6 +6,8 @@ import {
   StyleSheet,
   Text,
   ScrollView,
+  Platform,
+  Pressable,
 } from "react-native";
 import { Formik } from "formik";
 import { writeTemplateData } from "../data/firestopreRealTime";
@@ -60,8 +62,30 @@ const CreateTemplate = () => {
                 </>
               );
             })}
-            <Button onPress={addField} title="add" />
-            <Button onPress={handleSubmit} title="Submit" />
+
+            {Platform.OS === "ios" ? (
+              <>
+                <Button onPress={addField} title="Add" />
+                <Button
+                  style={styles.button}
+                  onPress={handleSubmit}
+                  title="Submit"
+                />
+              </>
+            ) : (
+              <>
+                <Pressable style={styles.button} onPress={addField}>
+                  <Text style={styles.buttonText}>Add</Text>
+                </Pressable>
+                <Pressable
+                  style={styles.button}
+                  onPress={handleSubmit}
+                  title="Submit"
+                >
+                  <Text style={styles.buttonText}>Submit</Text>
+                </Pressable>
+              </>
+            )}
           </View>
         </ScrollView>
       )}
@@ -147,6 +171,16 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-evenly",
+  },
+  button: {
+    alignItems: "center",
+    justifyContent: "center",
+    paddingVertical: 20,
+  },
+  buttonText: {
+    fontWeight: "500",
+    fontSize: 17,
+    color: "rgb(0, 122,225)",
   },
 });
 
