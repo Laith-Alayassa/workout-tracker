@@ -12,6 +12,30 @@ import {
 import { Formik } from "formik";
 import { writeTemplateData } from "../data/firestopreRealTime";
 
+const SetsAddSection = ({ index }) => {
+  return (
+    <View
+      style={{
+        flexDirection: "row",
+        justifyContent: "space-around",
+        marginTop: 15,
+      }}
+    >
+      <Text>{index + 1}</Text>
+      <TextInput
+        keyboardType="numeric"
+        style={styles.textInputSmall}
+        placeholder="Weight"
+      ></TextInput>
+      <TextInput
+        keyboardType="numeric"
+        style={styles.textInputSmall}
+        placeholder="Reps"
+      ></TextInput>
+    </View>
+  );
+};
+
 const CreateTemplate = () => {
   const [workoutsNum, setWorkoutsNum] = useState(Array(3).fill(0));
   const addField = () => {
@@ -46,6 +70,7 @@ const CreateTemplate = () => {
             />
 
             {workoutsNum.map((exercise, i) => {
+              const [sets, setSets] = useState(Array(2).fill(0));
               return (
                 <>
                   <View style={styles.set}>
@@ -58,6 +83,33 @@ const CreateTemplate = () => {
                       onChangeText={handleChange(`exercise${i}`)}
                       onBlur={handleBlur(`exercise${i}`)}
                     />
+                    <View
+                      style={{
+                        flexDirection: "row",
+                        justifyContent: "space-around",
+                        marginTop: 10,
+                      }}
+                    >
+                      <Text>Set</Text>
+                      <Text>Weight (KG)</Text>
+                      <Text>Reps</Text>
+                    </View>
+                    {sets.map((set, i) => {
+                      return <SetsAddSection index={i} />;
+                    })}
+                    <Pressable
+                      style={styles.button}
+                      onPress={() => {
+                        setSets((sets) => {
+                          let newSets = sets.slice();
+                          newSets.push(1);
+                          return newSets;
+                        });
+                      }}
+                      title="Submit"
+                    >
+                      <Text style={styles.buttonText}>Submit</Text>
+                    </Pressable>
                   </View>
                 </>
               );
@@ -96,11 +148,18 @@ const CreateTemplate = () => {
 const styles = StyleSheet.create({
   textInput: {
     backgroundColor: "rgba(158, 150, 150, .2)",
-    borderColor: "rgba(158, 150, 150, .5)",
     borderRadius: 8,
     padding: 5,
     fontSize: 25,
-    borderWidth: 1,
+  },
+  textInputSmall: {
+    backgroundColor: "rgba(158, 150, 150, .2)",
+    borderRadius: 4,
+    padding: 3,
+    width: 80,
+    marginBottom: 15,
+
+    textAlign: "center",
   },
   workoutTitle: {
     fontWeight: "bold",
