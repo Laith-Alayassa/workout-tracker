@@ -1,6 +1,7 @@
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
+import writeUserData from "../../data/firestopreRealTime";
 
 const BottomBar = () => {
   const navigation = useNavigation();
@@ -10,7 +11,10 @@ const BottomBar = () => {
         <Ionicons name="person" size={24} color="white" />
         <Text style={{ color: "white" }}>Person</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.barIcons}>
+      <TouchableOpacity
+        style={styles.barIcons}
+        onPress={() => writeUserData("2", "laith", "plzwork")}
+      >
         <Ionicons name="time" size={24} color="white" />
         <Text style={{ color: "white" }}>History</Text>
       </TouchableOpacity>

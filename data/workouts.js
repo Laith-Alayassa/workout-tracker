@@ -1,4 +1,4 @@
-export const workouts = [
+export default workouts = [
   {
     id: "0",
     title: "Back Workout",

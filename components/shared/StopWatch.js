@@ -1,20 +1,6 @@
-// Example of React Native Timer and Stopwatch
-// https://aboutreact.com/react-native-timer-stopwatch/
-
-// import React in our code
-import React, { useState } from "react";
-
-// import all the components we are going to use
-import {
-  SafeAreaView,
-  StyleSheet,
-  Text,
-  View,
-  TouchableOpacity,
-} from "react-native";
-
-//importing library to use Stopwatch and Timer
-import { Stopwatch, Timer } from "react-native-stopwatch-timer";
+import { useState } from "react";
+import { StyleSheet, View } from "react-native";
+import { Stopwatch } from "react-native-stopwatch-timer";
 
 const StopWatch = () => {
   const [isStopwatchStart, setIsStopwatchStart] = useState(true);

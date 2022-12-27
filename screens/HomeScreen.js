@@ -2,7 +2,7 @@ import { View, FlatList, StyleSheet } from "react-native";
 import React from "react";
 import BottomBar from "../components/shared/BottomBar";
 import WorkoutCard from "../components/singleWorkout/WorkoutCard";
-import { workouts } from "../data/workouts";
+import workouts from "../data/workouts";
 
 const HomeScreen = () => {
   const renderItem = (workout) => {

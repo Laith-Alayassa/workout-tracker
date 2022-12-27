@@ -14,3 +14,4 @@ web-build/
 
 # mine
 .vscode
+/config/firebaseConfig.js
