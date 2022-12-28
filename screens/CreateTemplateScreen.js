@@ -3,6 +3,7 @@ import { TextInput, View, StyleSheet, Text, ScrollView } from "react-native";
 import { Formik } from "formik";
 import Workout from "../components/createTemplateForm/Workout";
 import EndFormButtons from "../components/createTemplateForm/EndFormButtons";
+import { writeFormData } from "../data/firestopreRealTime";
 
 const CreateTemplateScreen = () => {
   const [workoutsNum, setWorkoutsNum] = useState(Array(3).fill(0));
@@ -11,7 +12,7 @@ const CreateTemplateScreen = () => {
     <Formik
       enableReinitialize={true}
       initialValues={{}}
-      onSubmit={(values) => console.log(values)}
+      onSubmit={(values) => writeFormData(values)}
     >
       {({ handleChange, handleBlur, handleSubmit, values }) => (
         <ScrollView>
@@ -22,9 +23,9 @@ const CreateTemplateScreen = () => {
             <TextInput
               style={[
                 styles.textInput,
-                { marginHorizontal: 20, marginBottom: 20 },
+                { marginHorizontal: 24, marginBottom: 24 },
               ]}
-              placeholder="Push Workout 1"
+              placeholder="Push Workout V1"
               onChangeText={handleChange("templateName")}
               onBlur={handleBlur("templateName")}
               value={values.templateName}
@@ -64,20 +65,8 @@ const styles = StyleSheet.create({
     fontSize: 24,
   },
   workoutTitleContainer: {
-    margin: 50,
-    marginBottom: 20,
+    marginVertical: 24,
     alignItems: "center",
-  },
-
-  button: {
-    alignItems: "center",
-    justifyContent: "center",
-    paddingVertical: 20,
-  },
-  buttonText: {
-    fontWeight: "500",
-    fontSize: 17,
-    color: "rgb(0, 122,225)",
   },
 });
 

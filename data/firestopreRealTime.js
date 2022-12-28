@@ -138,4 +138,18 @@ function getUserData(userId) {
     });
 }
 
-export { writeUserData, getUserData, writeTemplateData };
+function writeFormData(formData) {
+  const db = getDatabase();
+  const reference = ref(db, "users/");
+  console.log("====================================");
+  console.log(formData);
+  console.log("====================================");
+  push(reference, formData);
+  //   set(ref(db, "users/" + userId), {
+  //     username: name,
+  //     email: email,
+  //   });
+  console.log("Done");
+}
+
+export { writeUserData, getUserData, writeTemplateData, writeFormData };
