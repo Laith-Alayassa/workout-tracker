@@ -11,7 +11,7 @@ import { theme } from "./styles/theme";
 import WorkoutScreen from "./screens/WorkoutScreen";
 import TimerScreen from "./screens/TimerScreen";
 import StopWatch from "./components/shared/StopWatch";
-import CreateTemplate from "./screens/CreateTemplate";
+import CreateTemplateScreen from "./screens/CreateTemplateScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -54,7 +54,7 @@ export default function App() {
             />
             <Stack.Screen
               name="CreateTemplate"
-              component={CreateTemplate}
+              component={CreateTemplateScreen}
               options={{
                 headerTitleAlign: "center",
                 title: "🔨 Create Template 🔨",
