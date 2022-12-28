@@ -12,6 +12,52 @@ import {
 import { Formik } from "formik";
 import { writeTemplateData } from "../data/firestopreRealTime";
 
+const Workout = ({ index, handleBlur, handleChange }) => {
+  const [sets, setSets] = useState(Array(2).fill(0));
+  return (
+    <>
+      <View style={styles.set}>
+        <View style={styles.titleContainer}>
+          <Text style={styles.title}>{`Exercise ${index + 1}`}</Text>
+        </View>
+        <TextInput
+          placeholder="Exercise Name"
+          style={styles.textInput}
+          onChangeText={handleChange(`exercise${index}`)}
+          onBlur={handleBlur(`exercise${index}`)}
+        />
+        <View
+          style={{
+            flexDirection: "row",
+            justifyContent: "space-around",
+            marginTop: 10,
+          }}
+        >
+          <Text>Set</Text>
+          <Text>Weight (KG)</Text>
+          <Text>Reps</Text>
+        </View>
+        {sets.map((set, i) => {
+          return <SetsAddSection index={index} />;
+        })}
+        <Pressable
+          style={styles.button}
+          onPress={() => {
+            setSets((sets) => {
+              let newSets = sets.slice();
+              newSets.push(1);
+              return newSets;
+            });
+          }}
+          title="Submit"
+        >
+          <Text style={styles.buttonText}>Submit</Text>
+        </Pressable>
+      </View>
+    </>
+  );
+};
+
 const SetsAddSection = ({ index }) => {
   return (
     <View
@@ -69,49 +115,13 @@ const CreateTemplate = () => {
               value={values.templateName}
             />
 
-            {workoutsNum.map((exercise, i) => {
-              const [sets, setSets] = useState(Array(2).fill(0));
+            {workoutsNum.map((exercise, index) => {
               return (
-                <>
-                  <View style={styles.set}>
-                    <View style={styles.titleContainer}>
-                      <Text style={styles.title}>{`Exercise ${i + 1}`}</Text>
-                    </View>
-                    <TextInput
-                      placeholder="Exercise Name"
-                      style={styles.textInput}
-                      onChangeText={handleChange(`exercise${i}`)}
-                      onBlur={handleBlur(`exercise${i}`)}
-                    />
-                    <View
-                      style={{
-                        flexDirection: "row",
-                        justifyContent: "space-around",
-                        marginTop: 10,
-                      }}
-                    >
-                      <Text>Set</Text>
-                      <Text>Weight (KG)</Text>
-                      <Text>Reps</Text>
-                    </View>
-                    {sets.map((set, i) => {
-                      return <SetsAddSection index={i} />;
-                    })}
-                    <Pressable
-                      style={styles.button}
-                      onPress={() => {
-                        setSets((sets) => {
-                          let newSets = sets.slice();
-                          newSets.push(1);
-                          return newSets;
-                        });
-                      }}
-                      title="Submit"
-                    >
-                      <Text style={styles.buttonText}>Submit</Text>
-                    </Pressable>
-                  </View>
-                </>
+                <Workout
+                  handleBlur={handleBlur}
+                  handleChange={handleChange}
+                  index={index}
+                ></Workout>
               );
             })}
 
