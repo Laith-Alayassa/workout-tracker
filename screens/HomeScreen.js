@@ -5,6 +5,7 @@ import {
   Text,
   Image,
   TouchableOpacity,
+  ScrollView,
 } from "react-native";
 import BottomBar from "../components/shared/BottomBar";
 import WorkoutCard from "../components/singleWorkout/WorkoutCard";
@@ -44,19 +45,23 @@ const HomeScreen = () => {
 
   if (fontsLoaded) {
     return (
-      <View style={styles.home}>
-        <Text style={styles.heroText}>Hi Laith 👋</Text>
-        <Text style={styles.subHeroText}>What are we hitting today?</Text>
-        <Boxes />
+      <>
+        <View style={styles.home}>
+          <ScrollView>
+            <Text style={styles.heroText}>Hi Laith 👋</Text>
+            <Text style={styles.subHeroText}>What are we hitting today?</Text>
+            <Boxes />
 
-        <FlatList
-          data={workouts}
-          renderItem={renderItem}
-          key={(item) => item.id}
-          style={{ marginBottom: 70 }}
-        />
+            {/* Margin Bottom so bottom navigation doesn't overlap */}
+            <View style={{ marginBottom: 80 }}>
+              {workouts.map((workout) => {
+                return <WorkoutCard workout={workout}></WorkoutCard>;
+              })}
+            </View>
+          </ScrollView>
+        </View>
         <BottomBar />
-      </View>
+      </>
     );
   } else {
     return <AppLoading />;

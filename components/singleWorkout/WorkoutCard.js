@@ -3,9 +3,9 @@ import { View, StyleSheet, Text, TouchableWithoutFeedback } from "react-native";
 
 const WorkoutCard = ({ workout }) => {
   const navigation = useNavigation();
-  const title = workout.item.title;
-  const lastPreformed = workout.item.lastPreformed;
-  const exercises = workout.item.exercises;
+  const title = workout.title;
+  const lastPreformed = workout.lastPreformed;
+  const exercises = workout.exercises;
 
   return (
     <View style={styles.card}>
