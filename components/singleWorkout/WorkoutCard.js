@@ -1,7 +1,5 @@
 import { useNavigation } from "@react-navigation/native";
-import React from "react";
-import { View, StyleSheet, ScrollView } from "react-native";
-import { Card, Title, Paragraph } from "react-native-paper";
+import { View, StyleSheet, Text, TouchableWithoutFeedback } from "react-native";
 
 const WorkoutCard = ({ workout }) => {
   const navigation = useNavigation();
@@ -10,35 +8,42 @@ const WorkoutCard = ({ workout }) => {
   const exercises = workout.item.exercises;
 
   return (
-    <Card
-      style={styles.card}
-      onPress={() =>
-        navigation.navigate("WorkoutScreen", {
-          title,
-          lastPreformed,
-          exercises,
-        })
-      }
-    >
-      <Card.Content>
-        <View style={styles.titleContainer}>
-          <Title style={styles.title}>💪 {title}</Title>
-        </View>
-        <Paragraph style={styles.paragraph}>
-          Last Performed: {lastPreformed}
-        </Paragraph>
-        <View style={styles.horizontalLine} />
+    <View style={styles.card}>
+      <TouchableWithoutFeedback
+        onPress={() =>
+          navigation.navigate("WorkoutScreen", {
+            title,
+            lastPreformed,
+            exercises,
+          })
+        }
+      >
         <View>
-          {exercises.map((exercise) => {
-            return (
-              <Paragraph style={styles.paragraph}>
-                🏋️‍♀️ {exercise.name} {exercise.reps} X {exercise.sets}
-              </Paragraph>
-            );
-          })}
+          <View style={styles.titleContainer}>
+            <Text style={styles.title}>{title}</Text>
+            <Text style={styles.lastPerformed}>
+              Last Performed: {lastPreformed}
+            </Text>
+          </View>
+          <View>
+            {exercises.map((exercise) => {
+              return (
+                <View style={styles.workoutNameContainer}>
+                  <View>
+                    <Text style={styles.workoutName}>{exercise.name}</Text>
+                  </View>
+                  <View>
+                    <Text style={styles.workoutName}>
+                      {exercise.reps} X {exercise.sets}
+                    </Text>
+                  </View>
+                </View>
+              );
+            })}
+          </View>
         </View>
-      </Card.Content>
-    </Card>
+      </TouchableWithoutFeedback>
+    </View>
   );
 };
 
@@ -46,35 +51,39 @@ const styles = StyleSheet.create({
   home: { flex: 1, backgroundColor: "white" },
   card: {
     backgroundColor: "white",
-    marginTop: 40,
-    marginHorizontal: 18,
+    marginTop: 16,
+    marginHorizontal: 24,
+    borderWidth: 1,
+    borderColor: "#ECECEA",
+    borderRadius: 22,
+    paddingBottom: 16,
   },
   titleContainer: {
-    backgroundColor: "#304FFE",
-    borderRadius: 10,
-    padding: 20,
-    marginBottom: 10,
-
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 3,
-    },
-    shadowOpacity: 0.27,
-    shadowRadius: 4.65,
-
-    elevation: 6,
+    height: 48,
+    backgroundColor: "#1B1B1B",
+    borderTopLeftRadius: 22,
+    borderTopRightRadius: 22,
+    paddingLeft: 8,
+    marginBottom: 24,
+    flexDirection: "row",
+    justifyContent: "space-around",
+    alignItems: "center",
   },
-  title: { color: "white" },
-  paragraph: {
-    color: "#395B64",
-    marginBottom: 10,
+  title: { color: "white", fontFamily: "LexendDeca_400Regular", fontSize: 22 },
+  lastPerformed: {
+    color: "white",
+    fontSize: 13,
+    fontFamily: "LexendDeca_400Regular",
+  },
+  workoutNameContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+  },
+  workoutName: {
     fontSize: 16,
-  },
-  horizontalLine: {
-    borderBottomColor: "black",
-    borderBottomWidth: StyleSheet.hairlineWidth,
-    marginBottom: 10,
+    fontFamily: "LexendDeca_400Regular",
+    marginHorizontal: 24,
+    marginBottom: 8,
   },
 });
 

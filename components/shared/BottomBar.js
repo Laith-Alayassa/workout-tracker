@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
     right: 0,
     bottom: 0,
     height: 55,
-    backgroundColor: "#304FFE",
+    backgroundColor: "#1B1B1B",
   },
   barIcons: {
     alignItems: "center",
