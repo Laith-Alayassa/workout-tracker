@@ -19,7 +19,7 @@ const data = {
   "weight Workout: 2, S: 1": "35",
 };
 
-function fillTemplate(data) {
+function formatFormForFirebaseUpload(data) {
   function findNumberOfSets(exerciseCounter) {
     let setsCounter = 0;
     for (let k in data) {
@@ -42,16 +42,18 @@ function fillTemplate(data) {
   }
 
   const template = {};
-  template.name = data.templateName;
+  data.templateName ? (template.name = data.templateName) : "";
+  template.lastPerformed = new Date().toLocaleDateString();
   let exerciseCounter = 0;
   for (const key in data) {
-    let setsForASingleExercise = {};
     if (key.startsWith("exercise")) {
+      let exercise = {};
       repsAndSets = findSetsInfo(exerciseCounter);
-      setsForASingleExercise = { ...setsForASingleExercise, repsAndSets };
+      exercise.name = data[key];
+      exercise.sets = repsAndSets;
       template.exercises = {
         ...template.exercises,
-        [exerciseCounter]: setsForASingleExercise,
+        [exerciseCounter]: { exercise },
       };
       exerciseCounter++;
     }
@@ -60,4 +62,4 @@ function fillTemplate(data) {
   return template;
 }
 
-export { fillTemplate, data };
+export { formatFormForFirebaseUpload, data };

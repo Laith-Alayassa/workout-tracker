@@ -4,16 +4,18 @@ import { Formik } from "formik";
 import Workout from "../components/createTemplateForm/Workout";
 import EndFormButtons from "../components/createTemplateForm/EndFormButtons";
 import { writeFormData } from "../data/firestopreRealTime";
+import { formatFormForFirebaseUpload } from "../formFormatter";
+
+const submitForm = (values) => {
+  const form = formatFormForFirebaseUpload(values);
+  writeFormData(form);
+};
 
 const CreateTemplateScreen = () => {
   const [workoutsNum, setWorkoutsNum] = useState(Array(3).fill(0));
 
   return (
-    <Formik
-      enableReinitialize={true}
-      initialValues={{}}
-      onSubmit={(values) => writeFormData(values)}
-    >
+    <Formik enableReinitialize={true} initialValues={{}} onSubmit={submitForm}>
       {({ handleChange, handleBlur, handleSubmit, values }) => (
         <ScrollView>
           <View>

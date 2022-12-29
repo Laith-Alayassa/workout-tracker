@@ -17,7 +17,6 @@ const WorkoutScreen = ({ route }) => {
 
 const styles = StyleSheet.create({
   titleContainer: {
-    // height: 60,
     justifyContent: "center",
     alignItems: "center",
     marginVertical: 32,

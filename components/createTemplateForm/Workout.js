@@ -50,7 +50,6 @@ const Workout = ({ index: workoutIndex, handleBlur, handleChange }) => {
               return newSets;
             });
           }}
-          title="Submit"
         >
           <Text style={styles.buttonText}>Add Set</Text>
         </Pressable>
@@ -62,10 +61,11 @@ const Workout = ({ index: workoutIndex, handleBlur, handleChange }) => {
 const styles = StyleSheet.create({
   textInput: {
     backgroundColor: "rgba(158, 150, 150, .2)",
+    marginHorizontal: 16,
     borderRadius: 8,
     padding: 5,
     fontSize: 25,
-    marginVertical: 16,
+    marginBottom: 16,
   },
   textInputSmall: {
     backgroundColor: "rgba(158, 150, 150, .2)",
@@ -77,42 +77,29 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   set: {
-    marginBottom: 24,
-    marginHorizontal: 24,
-    borderColor: "rgba(158, 150, 150, .5)",
-    borderRadius: 15,
     backgroundColor: "white",
-    padding: 16,
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 3,
-    },
-    shadowOpacity: 0.2,
-    shadowRadius: 4.65,
-
-    elevation: 5,
+    marginBottom: 16,
+    marginHorizontal: 24,
+    borderWidth: 1,
+    borderColor: "#ECECEA",
+    borderRadius: 22,
+    paddingBottom: 16,
   },
   title: {
-    fontWeight: "500",
-    fontSize: 18,
     color: "white",
+    fontFamily: "LexendDeca_400Regular",
+    fontSize: 22,
   },
   titleContainer: {
-    backgroundColor: "#007AFF",
-    borderRadius: 10,
-    padding: 20,
-    marginBottom: 8,
-
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 3,
-    },
-    shadowOpacity: 0.2,
-    shadowRadius: 4.65,
-
-    elevation: 5,
+    height: 48,
+    backgroundColor: "#1B1B1B",
+    borderTopLeftRadius: 22,
+    borderTopRightRadius: 22,
+    paddingLeft: 8,
+    marginBottom: 24,
+    flexDirection: "row",
+    justifyContent: "space-around",
+    alignItems: "center",
   },
 
   button: {

@@ -1,11 +1,14 @@
-import { StyleSheet, Text, Platform, Button, Pressable } from "react-native";
+import {
+  StyleSheet,
+  View,
+  Text,
+  Platform,
+  Button,
+  Pressable,
+} from "react-native";
 import React from "react";
 
-export default function EndFormButtons({
-  handleSubmit,
-  workoutsNum,
-  setWorkoutsNum,
-}) {
+export default function EndFormButtons({ handleSubmit, setWorkoutsNum }) {
   const addField = () => {
     setWorkoutsNum((workoutsNum) => {
       let newWorkouts = workoutsNum.slice();
@@ -15,7 +18,7 @@ export default function EndFormButtons({
     });
   };
   return (
-    <>
+    <View style={styles.container}>
       {Platform.OS === "ios" ? (
         <>
           <Button onPress={addField} title="Add Exercise" />
@@ -26,16 +29,12 @@ export default function EndFormButtons({
           <Pressable style={styles.button} onPress={addField}>
             <Text style={styles.buttonText}>Add</Text>
           </Pressable>
-          <Pressable
-            style={styles.button}
-            onPress={handleSubmit}
-            title="Submit"
-          >
+          <Pressable style={styles.button} onPress={handleSubmit}>
             <Text style={styles.buttonText}>Submit</Text>
           </Pressable>
         </>
       )}
-    </>
+    </View>
   );
 }
 
@@ -43,11 +42,14 @@ const styles = StyleSheet.create({
   button: {
     alignItems: "center",
     justifyContent: "center",
-    paddingVertical: 20,
+    marginVertical: 16,
   },
   buttonText: {
-    fontWeight: "500",
+    fontFamily: "LexendDeca_400Regular",
     fontSize: 17,
     color: "rgb(0, 122,225)",
+  },
+  container: {
+    marginBottom: 16,
   },
 });
