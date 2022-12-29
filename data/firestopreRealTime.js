@@ -138,13 +138,15 @@ function getUserData(userId) {
     });
 }
 
-function writeFormData(formData) {
+function writeFormData(formattedData) {
   const db = getDatabase();
   const reference = ref(db, "users/");
-  console.log("====================================");
-  console.log(formData);
-  console.log("====================================");
-  push(reference, formData);
+  // console.log("====================================");
+  // console.log(formData);
+  // console.log("====================================");
+  // push(reference, formData);'
+  console.log(formattedData);
+  push(reference, formattedData);
   //   set(ref(db, "users/" + userId), {
   //     username: name,
   //     email: email,

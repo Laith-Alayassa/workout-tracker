@@ -19,71 +19,45 @@ const data = {
   "weight Workout: 2, S: 1": "35",
 };
 
-// let template = {};
-// let exerciseCounter = 0;
-// for (const key in data) {
-//   if (!key.startsWith("exercise")) {
-//     //
-//   }
-
-//   let exercise = {};
-//   let setCounter = 0;
-
-//   for (const key2 in data) {
-//     if (!key2.startsWith(`weight Workout: ${exerciseCounter}`)) {
-//       //
-//     }
-//     let newSet = { [setCounter]: data[key2] };
-//     exercise = { ...exercise, newSet };
-//     setCounter++;
-//   }
-// ,
-//   template = { ...template, exercise };
-//   exerciseCounter++;
-//   console.log("====");
-// }
-
-// console.log("====================================");
-// console.log(template);
-// console.log("====================================");
-
 function fillTemplate(data) {
+  function findNumberOfSets(exerciseCounter) {
+    let setsCounter = 0;
+    for (let k in data) {
+      if (k.startsWith(`reps Workout: ${exerciseCounter}`)) setsCounter++;
+    }
+    return setsCounter;
+  }
+
+  function findSetsInfo(exerciseCounter) {
+    numSets = findNumberOfSets(exerciseCounter, data);
+    let setsObj = {};
+    for (let i = 0; i < numSets; i++) {
+      let set = {};
+
+      set.reps = data[`reps Workout: ${exerciseCounter}, S: ${i}`];
+      set.weight = data[`weight Workout: ${exerciseCounter}, S: ${i}`];
+      setsObj[i] = set;
+    }
+    return setsObj;
+  }
+
   const template = {};
   template.name = data.templateName;
   let exerciseCounter = 0;
   for (const key in data) {
+    let setsForASingleExercise = {};
     if (key.startsWith("exercise")) {
       repsAndSets = findSetsInfo(exerciseCounter);
+      setsForASingleExercise = { ...setsForASingleExercise, repsAndSets };
       template.exercises = {
         ...template.exercises,
-        [exerciseCounter]: repsAndSets,
+        [exerciseCounter]: setsForASingleExercise,
       };
       exerciseCounter++;
     }
   }
 
-  console.log(template);
+  return template;
 }
 
-function findSetsInfo(exerciseCounter) {
-  numSets = findNumberOfSets(exerciseCounter, data);
-  let setsObj = {};
-  for (let i = 0; i < numSets; i++) {
-    let set = {};
-
-    set.reps = data[`reps Workout: ${exerciseCounter}, S: ${i}`];
-    set.weight = data[`weight Workout: ${exerciseCounter}, S: ${i}`];
-    setsObj = { ...setsObj, set };
-  }
-  return setsObj;
-}
-
-function findNumberOfSets(exerciseCounter) {
-  let setsCounter = 0;
-  for (let k in data) {
-    if (k.startsWith(`reps Workout: ${exerciseCounter}`)) setsCounter++;
-  }
-  return setsCounter;
-}
-
-fillTemplate(data);
+export { fillTemplate, data };

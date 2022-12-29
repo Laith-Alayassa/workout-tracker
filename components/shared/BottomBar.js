@@ -1,13 +1,26 @@
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
-import { writeUserData, getUserData } from "../../data/firestopreRealTime";
+import {
+  writeUserData,
+  getUserData,
+  writeFormData,
+} from "../../data/firestopreRealTime";
+import { data, fillTemplate } from "../../formFormatter";
 
 const BottomBar = () => {
   const navigation = useNavigation();
   return (
     <View style={styles.BottomBar}>
-      <TouchableOpacity style={styles.barIcons}>
+      <TouchableOpacity
+        style={styles.barIcons}
+        onPress={() => {
+          console.log("====================================");
+          console.log("sup");
+          console.log("====================================");
+          writeFormData(fillTemplate(data));
+        }}
+      >
         <Ionicons name="person" size={24} color="white" />
         <Text style={{ color: "white" }}>Person</Text>
       </TouchableOpacity>
