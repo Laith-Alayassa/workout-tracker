@@ -2,7 +2,7 @@ import { View, Text, StyleSheet, ScrollView } from "react-native";
 import ExerciseLog from "../components/singleWorkout/ExerciseLog";
 
 const WorkoutScreen = ({ route }) => {
-  const { title, lastPreformed, exercises } = route.params;
+  const { title, exercises } = route.params;
   return (
     <ScrollView style={{ backgroundColor: "white" }}>
       <View style={styles.titleContainer}>
@@ -17,14 +17,16 @@ const WorkoutScreen = ({ route }) => {
 
 const styles = StyleSheet.create({
   titleContainer: {
-    height: 60,
+    // height: 60,
     justifyContent: "center",
     alignItems: "center",
-    marginVertical: 20,
+    marginVertical: 32,
   },
   title: {
     fontWeight: "bold",
+    fontFamily: "LexendDeca_400Regular",
     fontSize: 24,
+    color: "#1B1B1B",
   },
 });
 export default WorkoutScreen;

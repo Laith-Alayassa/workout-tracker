@@ -8,8 +8,8 @@ const Set = ({ index, reps }) => {
   const navigation = useNavigation();
   return (
     <View style={styles.setRow}>
-      <Text>{index + 1}</Text>
-      <Text>{reps} reps</Text>
+      <Text style={styles.textFont}>{index + 1}</Text>
+      <Text style={styles.textFont}>{reps} reps</Text>
       <View
         // checkbox have different styles on Android
         // Instead of overriding them -if possible- I will use default Android checkbox for now
@@ -45,9 +45,9 @@ const ExerciseLog = ({ exercise }) => {
       </View>
 
       <View style={styles.setRow}>
-        <Text style={{ color: "#007AFF" }}>Set</Text>
-        <Text style={{ color: "#007AFF" }}>Reps</Text>
-        <Text style={{ color: "#007AFF" }}>Done</Text>
+        <Text style={styles.textFont}>Set</Text>
+        <Text style={styles.textFont}>Reps</Text>
+        <Text style={styles.textFont}>Done</Text>
       </View>
       <View>
         {setsList.map((set, index) => {
@@ -60,42 +60,29 @@ const ExerciseLog = ({ exercise }) => {
 
 const styles = StyleSheet.create({
   set: {
-    marginBottom: 25,
-    marginHorizontal: 25,
-    borderColor: "rgba(158, 150, 150, .5)",
-    borderRadius: 15,
     backgroundColor: "white",
-    padding: 20,
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 3,
-    },
-    shadowOpacity: 0.27,
-    shadowRadius: 4.65,
-
-    elevation: 6,
+    marginBottom: 16,
+    marginHorizontal: 24,
+    borderWidth: 1,
+    borderColor: "#ECECEA",
+    borderRadius: 22,
+    paddingBottom: 16,
   },
   titleContainer: {
-    backgroundColor: "#007AFF",
-    borderRadius: 10,
-    padding: 20,
-    marginBottom: 10,
-
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 3,
-    },
-    shadowOpacity: 0.27,
-    shadowRadius: 4.65,
-
-    elevation: 6,
+    height: 48,
+    backgroundColor: "#1B1B1B",
+    borderTopLeftRadius: 22,
+    borderTopRightRadius: 22,
+    paddingLeft: 8,
+    marginBottom: 24,
+    flexDirection: "row",
+    justifyContent: "space-around",
+    alignItems: "center",
   },
   title: {
-    fontWeight: "500",
-    fontSize: 18,
     color: "white",
+    fontFamily: "LexendDeca_400Regular",
+    fontSize: 22,
   },
   checkbox: {
     margin: 10,
@@ -119,6 +106,10 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-evenly",
+  },
+  textFont: {
+    fontFamily: "LexendDeca_400Regular",
+    color: "#1B1B1B",
   },
 });
 

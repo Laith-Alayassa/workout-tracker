@@ -1,12 +1,4 @@
-import {
-  View,
-  FlatList,
-  StyleSheet,
-  Text,
-  Image,
-  TouchableOpacity,
-  ScrollView,
-} from "react-native";
+import { View, StyleSheet, Text, ScrollView } from "react-native";
 import BottomBar from "../components/shared/BottomBar";
 import WorkoutCard from "../components/singleWorkout/WorkoutCard";
 import workouts from "../data/workouts";

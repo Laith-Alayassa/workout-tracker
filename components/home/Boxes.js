@@ -8,7 +8,10 @@ export default function Boxes() {
     <View style={styles.boxesContainer}>
       <TouchableOpacity style={{ alignItems: "center" }}>
         <View style={[styles.heroBox, { backgroundColor: "#1B1B1B" }]}>
-          <Image source={require("../../assets/icons/template.png")}></Image>
+          <Image
+            style={styles.icon}
+            source={require("../../assets/icons/template2.png")}
+          ></Image>
         </View>
         <Text>Template</Text>
       </TouchableOpacity>
@@ -17,19 +20,28 @@ export default function Boxes() {
         onPress={() => navigation.navigate("CreateTemplate")}
       >
         <View style={styles.heroBox}>
-          <Image source={require("../../assets/icons/newFolder.png")}></Image>
+          <Image
+            style={styles.icon}
+            source={require("../../assets/icons/newFolder.png")}
+          ></Image>
         </View>
         <Text>Create New</Text>
       </TouchableOpacity>
       <TouchableOpacity style={{ alignItems: "center" }}>
         <View style={styles.heroBox}>
-          <Image source={require("../../assets/icons/history.png")}></Image>
+          <Image
+            style={styles.icon}
+            source={require("../../assets/icons/history.png")}
+          ></Image>
         </View>
         <Text>History</Text>
       </TouchableOpacity>
       <TouchableOpacity style={{ alignItems: "center" }}>
         <View style={styles.heroBox}>
-          <Image source={require("../../assets/icons/weights.png")}></Image>
+          <Image
+            style={styles.icon}
+            source={require("../../assets/icons/weights.png")}
+          ></Image>
         </View>
         <Text>Exercises</Text>
       </TouchableOpacity>
@@ -55,4 +67,5 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
+  icon: { width: 32, height: 32 },
 });
