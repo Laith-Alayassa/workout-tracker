@@ -21,9 +21,7 @@ const WorkoutCard = ({ workout }) => {
         <View>
           <View style={styles.titleContainer}>
             <Text style={styles.title}>{title}</Text>
-            <Text style={styles.lastPerformed}>
-              Last Performed: {lastPreformed}
-            </Text>
+            <Text style={styles.lastPerformed}>Performed: {lastPreformed}</Text>
           </View>
           <View>
             {exercises.map((exercise) => {
@@ -63,10 +61,10 @@ const styles = StyleSheet.create({
     backgroundColor: "#1B1B1B",
     borderTopLeftRadius: 22,
     borderTopRightRadius: 22,
-    paddingLeft: 8,
+    paddingHorizontal: 16,
     marginBottom: 24,
     flexDirection: "row",
-    justifyContent: "space-around",
+    justifyContent: "space-between",
     alignItems: "center",
   },
   title: { color: "white", fontFamily: "LexendDeca_400Regular", fontSize: 22 },
