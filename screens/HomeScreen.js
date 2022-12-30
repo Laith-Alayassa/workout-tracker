@@ -1,7 +1,5 @@
 import { View, StyleSheet, Text, ScrollView } from "react-native";
-import BottomBar from "../components/shared/BottomBar";
 import WorkoutCard from "../components/singleWorkout/WorkoutCard";
-import workouts from "../data/workouts";
 import AppLoading from "expo-app-loading";
 import {
   useFonts,
@@ -17,8 +15,25 @@ import {
 } from "@expo-google-fonts/lexend-deca";
 import { useNavigation } from "@react-navigation/native";
 import Boxes from "../components/home/Boxes";
+import { useEffect, useState } from "react";
+import { getFormData } from "../data/firestopreRealTime";
 
 const HomeScreen = () => {
+  const [workoutsTest, setWorkoutsTest] = useState([]);
+
+  useEffect(() => {
+    const data = getFormData();
+    // The time out is for the data to load
+    setTimeout(function () {
+      let actualData = data["_z"];
+      console.log(actualData);
+      for (let index = 0; index < actualData.length; index++) {
+        console.log(actualData[index].exercises[0].exercise.sets[0]);
+      }
+      setWorkoutsTest(actualData);
+    }, 1000);
+  }, []);
+
   const navigation = useNavigation();
   let [fontsLoaded] = useFonts({
     LexendDeca_100Thin,
@@ -46,13 +61,14 @@ const HomeScreen = () => {
 
             {/* Margin Bottom so bottom navigation doesn't overlap */}
             <View style={{ marginBottom: 80 }}>
-              {workouts.map((workout) => {
-                return <WorkoutCard workout={workout}></WorkoutCard>;
+              {workoutsTest.map((workout) => {
+                return <Text>Place Holder Workout</Text>;
+                // return <WorkoutCard workout={workout}></WorkoutCard>;
               })}
             </View>
           </ScrollView>
         </View>
-        <BottomBar />
+        {/* <BottomBar /> */}
       </>
     );
   } else {
