@@ -27,9 +27,21 @@ const Workout = ({ index: workoutIndex, handleBlur, handleChange }) => {
         >
           {/* Margins are to align headers with content better */}
           {/* Should find a better way of doing so */}
-          <Text style={{ marginRight: 30 }}>Set</Text>
-          <Text style={{ marginRight: 24 }}>Weight</Text>
-          <Text style={{ marginRight: 16 }}>Reps</Text>
+          <Text
+            style={{ fontFamily: "LexendDeca_400Regular", marginRight: 30 }}
+          >
+            Set
+          </Text>
+          <Text
+            style={{ fontFamily: "LexendDeca_400Regular", marginRight: 24 }}
+          >
+            Weight
+          </Text>
+          <Text
+            style={{ fontFamily: "LexendDeca_400Regular", marginRight: 16 }}
+          >
+            Reps
+          </Text>
         </View>
         {sets.map((set, setIndex) => {
           return (
@@ -60,6 +72,7 @@ const Workout = ({ index: workoutIndex, handleBlur, handleChange }) => {
 
 const styles = StyleSheet.create({
   textInput: {
+    fontFamily: "LexendDeca_400Regular",
     backgroundColor: "rgba(158, 150, 150, .2)",
     marginHorizontal: 16,
     borderRadius: 8,

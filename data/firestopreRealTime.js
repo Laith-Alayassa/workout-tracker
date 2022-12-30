@@ -20,26 +20,52 @@ function writeTemplateData(formInfo) {
   const reference = ref(db, "users/");
   console.log("from write temp func: ===");
   console.log(formInfo);
-  const templateName = formInfo.templateName;
-  const exercise1 = formInfo.exercise1;
-  const exercise2 = formInfo.exercise2;
-  const userInfo = {
-    templates: {
-      [templateName]: {
-        lastPerformed: "now",
-        exercises: {
-          [exercise1]: {
-            filler: "filler",
-          },
-          [exercise2]: {
-            filler: "filler",
-          },
-        },
-      },
-    },
-  };
+
   push(reference, userInfo);
   console.log("Done");
+}
+
+function getUserData(userId) {
+  const dbRef = ref(getDatabase());
+  get(child(dbRef, `users/${userId}`))
+    .then((snapshot) => {
+      if (snapshot.exists()) {
+        console.log(snapshot.val());
+      } else {
+        console.log("No data available");
+      }
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+}
+
+function writeFormData(formattedData) {
+  const db = getDatabase();
+  const reference = ref(db, "users/");
+
+  console.log(formattedData);
+  push(reference, formattedData);
+
+  console.log("Done");
+}
+
+async function getFormData() {
+  let exercisesPLZ = [];
+  const dbRef = ref(getDatabase());
+  let snapshot = await get(child(dbRef, `users/`));
+  if (snapshot.exists()) {
+    snapshot.forEach(function (childSnapshot) {
+      var key = childSnapshot.key;
+      var childData = childSnapshot.val();
+      exercisesPLZ.push(childData);
+    });
+    return exercisesPLZ;
+  } else {
+    console.log("No data available");
+  }
+
+  return exercisesPLZ;
 }
 
 function writeUserData(userId, name, email) {
@@ -123,35 +149,10 @@ function writeUserData(userId, name, email) {
   console.log("Done");
 }
 
-function getUserData(userId) {
-  const dbRef = ref(getDatabase());
-  get(child(dbRef, `users/${userId}`))
-    .then((snapshot) => {
-      if (snapshot.exists()) {
-        console.log(snapshot.val());
-      } else {
-        console.log("No data available");
-      }
-    })
-    .catch((error) => {
-      console.error(error);
-    });
-}
-
-function writeFormData(formattedData) {
-  const db = getDatabase();
-  const reference = ref(db, "users/");
-  // console.log("====================================");
-  // console.log(formData);
-  // console.log("====================================");
-  // push(reference, formData);'
-  console.log(formattedData);
-  push(reference, formattedData);
-  //   set(ref(db, "users/" + userId), {
-  //     username: name,
-  //     email: email,
-  //   });
-  console.log("Done");
-}
-
-export { writeUserData, getUserData, writeTemplateData, writeFormData };
+export {
+  writeUserData,
+  getUserData,
+  writeTemplateData,
+  writeFormData,
+  getFormData,
+};

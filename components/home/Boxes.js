@@ -1,6 +1,7 @@
 import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
 import React from "react";
 import { useNavigation } from "@react-navigation/native";
+import { getFormData } from "../../data/firestopreRealTime";
 
 export default function Boxes() {
   const navigation = useNavigation();
@@ -27,7 +28,7 @@ export default function Boxes() {
         </View>
         <Text>Create New</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={{ alignItems: "center" }}>
+      <TouchableOpacity style={{ alignItems: "center" }} onPress={getFormData}>
         <View style={styles.heroBox}>
           <Image
             style={styles.icon}

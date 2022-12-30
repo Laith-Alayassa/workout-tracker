@@ -14,7 +14,9 @@ export default function SetsAddSection({
         marginTop: 8,
       }}
     >
-      <Text>{setIndex + 1}</Text>
+      <Text style={{ fontFamily: "LexendDeca_400Regular" }}>
+        {setIndex + 1}
+      </Text>
       <TextInput
         keyboardType="numeric"
         style={styles.textInputSmall}
@@ -39,6 +41,7 @@ export default function SetsAddSection({
 
 const styles = StyleSheet.create({
   textInputSmall: {
+    fontFamily: "LexendDeca_400Regular",
     backgroundColor: "rgba(150, 150, 150, .1)",
     borderRadius: 4,
     padding: 3,

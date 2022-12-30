@@ -5,17 +5,23 @@ import Workout from "../components/createTemplateForm/Workout";
 import EndFormButtons from "../components/createTemplateForm/EndFormButtons";
 import { writeFormData } from "../data/firestopreRealTime";
 import { formatFormForFirebaseUpload } from "../formFormatter";
+import { useNavigation } from "@react-navigation/native";
 
-const submitForm = (values) => {
+const submitForm = (values, navigation) => {
   const form = formatFormForFirebaseUpload(values);
   writeFormData(form);
+  navigation.navigate("Home");
 };
-
 const CreateTemplateScreen = () => {
+  const navigation = useNavigation();
   const [workoutsNum, setWorkoutsNum] = useState(Array(3).fill(0));
 
   return (
-    <Formik enableReinitialize={true} initialValues={{}} onSubmit={submitForm}>
+    <Formik
+      enableReinitialize={true}
+      initialValues={{}}
+      onSubmit={(values) => submitForm(values, navigation)}
+    >
       {({ handleChange, handleBlur, handleSubmit, values }) => (
         <ScrollView>
           <View>
@@ -25,7 +31,11 @@ const CreateTemplateScreen = () => {
             <TextInput
               style={[
                 styles.textInput,
-                { marginHorizontal: 24, marginBottom: 24 },
+                {
+                  marginHorizontal: 24,
+                  marginBottom: 24,
+                  fontFamily: "LexendDeca_400Regular",
+                },
               ]}
               placeholder="Push Workout V1"
               onChangeText={handleChange("templateName")}
@@ -63,6 +73,7 @@ const styles = StyleSheet.create({
     fontSize: 25,
   },
   workoutTitle: {
+    fontFamily: "LexendDeca_400Regular",
     fontWeight: "bold",
     fontSize: 24,
   },
