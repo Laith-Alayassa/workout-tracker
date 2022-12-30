@@ -9,7 +9,7 @@ const WorkoutScreen = ({ route }) => {
         <Text style={styles.title}>⚓️ {title} ⚓️</Text>
       </View>
       {exercises.map((exercise) => {
-        return <ExerciseLog exercise={exercise}></ExerciseLog>;
+        return <ExerciseLog exercise={exercise.exercise}></ExerciseLog>;
       })}
     </ScrollView>
   );

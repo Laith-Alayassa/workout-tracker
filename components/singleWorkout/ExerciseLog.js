@@ -3,13 +3,14 @@ import { useState } from "react";
 import { Checkbox } from "react-native-paper";
 import { useNavigation } from "@react-navigation/native";
 
-const Set = ({ index, reps }) => {
+const Set = ({ index, reps, weight }) => {
   const [checked, setChecked] = useState(false);
   const navigation = useNavigation();
   return (
     <View style={styles.setRow}>
       <Text style={styles.textFont}>{index + 1}</Text>
       <Text style={styles.textFont}>{reps} reps</Text>
+      <Text style={styles.textFont}>{weight} kg</Text>
       <View
         // checkbox have different styles on Android
         // Instead of overriding them -if possible- I will use default Android checkbox for now
@@ -31,13 +32,14 @@ const Set = ({ index, reps }) => {
 };
 
 const ExerciseLog = ({ exercise }) => {
+  console.log(exercise.sets[0]);
   const name = exercise.name;
   const reps = exercise.reps;
   const sets = exercise.sets;
 
   //   Can't use for loop so I have to make a list of sets
   // and use .map in a scroll view to render them
-  const setsList = Array(sets).fill(0);
+  // const setsList = Array(sets).fill(0);
   return (
     <View style={styles.set}>
       <View style={styles.titleContainer}>
@@ -47,11 +49,12 @@ const ExerciseLog = ({ exercise }) => {
       <View style={styles.setRow}>
         <Text style={styles.textFont}>Set</Text>
         <Text style={styles.textFont}>Reps</Text>
+        <Text style={styles.textFont}>weight</Text>
         <Text style={styles.textFont}>Done</Text>
       </View>
       <View>
-        {setsList.map((set, index) => {
-          return <Set index={index} reps={reps} />;
+        {sets.map((set, index) => {
+          return <Set index={index} reps={set.reps} weight={set.weight} />;
         })}
       </View>
     </View>
