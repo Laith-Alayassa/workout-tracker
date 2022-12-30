@@ -3,10 +3,12 @@ import { View, StyleSheet, Text, TouchableWithoutFeedback } from "react-native";
 
 const WorkoutCard = ({ workout }) => {
   const navigation = useNavigation();
-  const title = workout.title;
-  const lastPreformed = workout.lastPreformed;
+  const title = workout.name;
+  const lastPreformed = workout.lastPerformed;
   const exercises = workout.exercises;
-
+  console.log("====================================");
+  console.log(workout.exercises[0].exercise.sets);
+  console.log("====================================");
   return (
     <View style={styles.card}>
       <TouchableWithoutFeedback
@@ -28,11 +30,14 @@ const WorkoutCard = ({ workout }) => {
               return (
                 <View style={styles.workoutNameContainer}>
                   <View>
-                    <Text style={styles.workoutName}>{exercise.name}</Text>
+                    <Text style={styles.workoutName}>
+                      {exercise.exercise.name}
+                    </Text>
                   </View>
                   <View>
                     <Text style={styles.workoutName}>
-                      {exercise.reps} X {exercise.sets}
+                      {/* Only # number of sets because # reps could change each set */}
+                      X {exercise.exercise.sets.length}
                     </Text>
                   </View>
                 </View>

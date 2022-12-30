@@ -18,6 +18,21 @@ import Boxes from "../components/home/Boxes";
 import { useEffect, useState } from "react";
 import { getFormData } from "../data/firestopreRealTime";
 
+function createWorkoutObjects(actualData) {
+  let workoutObjectsArray = [];
+  for (let index = 0; index < actualData.length; index++) {
+    let workoutObject = {};
+    workoutObject.name = actualData[index].name;
+    workoutObject.exercises = actualData[index].exercises;
+    workoutObject.lastPerformed = actualData[index].lastPerformed;
+
+    console.log(workoutObject.exercises);
+    workoutObjectsArray.push(workoutObject);
+    // console.log(actualData[index]);
+  }
+  return workoutObjectsArray;
+}
+
 const HomeScreen = () => {
   const [workoutsTest, setWorkoutsTest] = useState([]);
 
@@ -27,10 +42,8 @@ const HomeScreen = () => {
     setTimeout(function () {
       let actualData = data["_z"];
       console.log(actualData);
-      for (let index = 0; index < actualData.length; index++) {
-        console.log(actualData[index].exercises[0].exercise.sets[0]);
-      }
-      setWorkoutsTest(actualData);
+      const workoutObjectsArray = createWorkoutObjects(actualData);
+      setWorkoutsTest(workoutObjectsArray);
     }, 1000);
   }, []);
 
@@ -62,8 +75,8 @@ const HomeScreen = () => {
             {/* Margin Bottom so bottom navigation doesn't overlap */}
             <View style={{ marginBottom: 80 }}>
               {workoutsTest.map((workout) => {
-                return <Text>Place Holder Workout</Text>;
-                // return <WorkoutCard workout={workout}></WorkoutCard>;
+                // return <Text>Place Holder Workout</Text>;
+                return <WorkoutCard workout={workout}></WorkoutCard>;
               })}
             </View>
           </ScrollView>
