@@ -3,16 +3,25 @@ import { TextInput, View, StyleSheet, Text, ScrollView } from "react-native";
 import { Formik } from "formik";
 import Workout from "../components/createTemplateForm/Workout";
 import EndFormButtons from "../components/createTemplateForm/EndFormButtons";
-import { writeFormData } from "../data/firestopreRealTime";
+import { getFormData, writeFormData } from "../data/firestopreRealTime";
 import { formatFormForFirebaseUpload } from "../formFormatter";
 import { useNavigation } from "@react-navigation/native";
+import { createWorkoutObjects, setDataFromDB } from "./HomeScreen";
 
-const submitForm = (values, navigation) => {
+const submitForm = (values, navigation, setWorkouts) => {
   const form = formatFormForFirebaseUpload(values);
   writeFormData(form);
+
+  /*
+   * Updating values in home screen so they
+   * so it re-renders and shows the new objects
+   */
+  setDataFromDB(setWorkouts);
+
   navigation.navigate("Home");
 };
-const CreateTemplateScreen = () => {
+const CreateTemplateScreen = ({ route }) => {
+  const { setWorkouts } = route.params;
   const navigation = useNavigation();
   const [workoutsNum, setWorkoutsNum] = useState(Array(3).fill(0));
 
@@ -20,7 +29,7 @@ const CreateTemplateScreen = () => {
     <Formik
       enableReinitialize={true}
       initialValues={{}}
-      onSubmit={(values) => submitForm(values, navigation)}
+      onSubmit={(values) => submitForm(values, navigation, setWorkouts)}
     >
       {({ handleChange, handleBlur, handleSubmit, values }) => (
         <ScrollView>

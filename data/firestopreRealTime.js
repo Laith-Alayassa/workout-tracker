@@ -1,5 +1,13 @@
 import { initializeApp } from "firebase/app";
-import { getDatabase, ref, set, push, get, child } from "firebase/database";
+import {
+  getDatabase,
+  ref,
+  set,
+  push,
+  get,
+  child,
+  onSnapshot,
+} from "firebase/database";
 
 // TODO: Replace the following with your app's Firebase project configuration
 // See: https://firebase.google.com/docs/web/learn-more#config-object
@@ -10,7 +18,7 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
+export const app = initializeApp(firebaseConfig);
 
 // Initialize Realtime Database and get a reference to the service
 // const database = getDatabase(app);
@@ -67,6 +75,24 @@ async function getFormData() {
 
   return exercisesPLZ;
 }
+
+// async function getFormDataOnSnapshot() {
+//   const db = getDatabase
+//   const dbRef = ref(getDatabase());
+//   let snapshot = await get(child(dbRef, `users/`));
+//   if (snapshot.exists()) {
+//     snapshot.forEach(function (childSnapshot) {
+//       var key = childSnapshot.key;
+//       var childData = childSnapshot.val();
+//       exercisesPLZ.push(childData);
+//     });
+//     return exercisesPLZ;
+//   } else {
+//     console.log("No data available");
+//   }
+
+//   return exercisesPLZ;
+// }
 
 function writeUserData(userId, name, email) {
   const db = getDatabase();

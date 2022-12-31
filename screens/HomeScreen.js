@@ -3,22 +3,16 @@ import WorkoutCard from "../components/singleWorkout/WorkoutCard";
 import AppLoading from "expo-app-loading";
 import {
   useFonts,
-  LexendDeca_100Thin,
-  LexendDeca_200ExtraLight,
   LexendDeca_300Light,
   LexendDeca_400Regular,
   LexendDeca_500Medium,
-  LexendDeca_600SemiBold,
-  LexendDeca_700Bold,
-  LexendDeca_800ExtraBold,
-  LexendDeca_900Black,
 } from "@expo-google-fonts/lexend-deca";
 import { useNavigation } from "@react-navigation/native";
 import Boxes from "../components/home/Boxes";
 import { useEffect, useState } from "react";
 import { getFormData } from "../data/firestopreRealTime";
 
-function createWorkoutObjects(actualData) {
+export function createWorkoutObjects(actualData) {
   let workoutObjectsArray = [];
   for (let index = 0; index < actualData.length; index++) {
     let workoutObject = {};
@@ -34,30 +28,17 @@ function createWorkoutObjects(actualData) {
 }
 
 const HomeScreen = () => {
-  const [workoutsTest, setWorkoutsTest] = useState([]);
+  const [workouts, setWorkouts] = useState([]);
 
   useEffect(() => {
-    const data = getFormData();
-    // The time out is for the data to load
-    setTimeout(function () {
-      let actualData = data["_z"];
-      console.log(actualData);
-      const workoutObjectsArray = createWorkoutObjects(actualData);
-      setWorkoutsTest(workoutObjectsArray);
-    }, 1000);
+    setDataFromDB(setWorkouts);
   }, []);
 
   const navigation = useNavigation();
   let [fontsLoaded] = useFonts({
-    LexendDeca_100Thin,
-    LexendDeca_200ExtraLight,
     LexendDeca_300Light,
     LexendDeca_400Regular,
     LexendDeca_500Medium,
-    LexendDeca_600SemiBold,
-    LexendDeca_700Bold,
-    LexendDeca_800ExtraBold,
-    LexendDeca_900Black,
   });
   const renderItem = (workout) => {
     return <WorkoutCard workout={workout} />;
@@ -70,11 +51,11 @@ const HomeScreen = () => {
           <ScrollView>
             <Text style={styles.heroText}>Hi Laith 👋</Text>
             <Text style={styles.subHeroText}>What are we hitting today?</Text>
-            <Boxes />
+            <Boxes setWorkouts={setWorkouts} />
 
             {/* Margin Bottom so bottom navigation doesn't overlap */}
             <View style={{ marginBottom: 80 }}>
-              {workoutsTest.map((workout) => {
+              {workouts.map((workout) => {
                 // return <Text>Place Holder Workout</Text>;
                 return <WorkoutCard workout={workout}></WorkoutCard>;
               })}
@@ -113,3 +94,14 @@ const styles = StyleSheet.create({
 });
 
 export default HomeScreen;
+export function setDataFromDB(setWorkouts) {
+  const data = getFormData();
+
+  // The time out is for the data to load
+  setTimeout(function () {
+    let actualData = data["_z"];
+    console.log(actualData);
+    const workoutObjectsArray = createWorkoutObjects(actualData);
+    setWorkouts(workoutObjectsArray);
+  }, 1000);
+}

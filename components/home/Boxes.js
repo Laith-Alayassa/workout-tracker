@@ -3,7 +3,7 @@ import React from "react";
 import { useNavigation } from "@react-navigation/native";
 import { getFormData } from "../../data/firestopreRealTime";
 
-export default function Boxes() {
+export default function Boxes({ setWorkouts }) {
   const navigation = useNavigation();
   return (
     <View style={styles.boxesContainer}>
@@ -18,7 +18,7 @@ export default function Boxes() {
       </TouchableOpacity>
       <TouchableOpacity
         style={{ alignItems: "center" }}
-        onPress={() => navigation.navigate("CreateTemplate")}
+        onPress={() => navigation.navigate("CreateTemplate", { setWorkouts })}
       >
         <View style={styles.heroBox}>
           <Image
