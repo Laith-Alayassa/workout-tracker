@@ -24,29 +24,16 @@ const Workout = ({
         <View
           style={{
             flexDirection: "row",
-            justifyContent: "space-around",
             marginTop: 8,
-            marginRight: 24,
+            marginRight: 8,
             marginBottom: 8,
           }}
         >
           {/* Margins are to align headers with content better */}
           {/* Should find a better way of doing so */}
-          <Text
-            style={{ fontFamily: "LexendDeca_400Regular", marginRight: 30 }}
-          >
-            Set
-          </Text>
-          <Text
-            style={{ fontFamily: "LexendDeca_400Regular", marginRight: 24 }}
-          >
-            Weight
-          </Text>
-          <Text
-            style={{ fontFamily: "LexendDeca_400Regular", marginRight: 16 }}
-          >
-            Reps
-          </Text>
+          <Text style={styles.setWeightReps}>Set</Text>
+          <Text style={styles.setWeightReps}>Weight</Text>
+          <Text style={styles.setWeightReps}>Reps</Text>
         </View>
         {sets.map((set, setIndex) => {
           return (
@@ -130,6 +117,11 @@ const styles = StyleSheet.create({
     fontWeight: "500",
     fontSize: 17,
     color: "rgb(0, 122,225)",
+  },
+  setWeightReps: {
+    flex: 1,
+    textAlign: "center",
+    fontFamily: "LexendDeca_400Regular",
   },
 });
 export default Workout;

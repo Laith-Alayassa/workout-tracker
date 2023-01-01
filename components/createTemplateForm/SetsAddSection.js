@@ -13,21 +13,30 @@ export default function SetsAddSection({
     <View
       style={{
         flexDirection: "row",
-        justifyContent: "space-around",
         alignItems: "center",
         marginTop: 8,
       }}
     >
-      <Text>{setIndex + 1}</Text>
-      <TextInput
-        keyboardType="numeric"
-        style={styles.textInputSmall}
-        placeholder="Weight"
-        onChangeText={handleChange(
-          `weight Workout: ${workoutIndex}, S: ${setIndex}`
-        )}
-        onBlur={handleBlur(`weight Workout: ${workoutIndex} S: ${setIndex}`)}
-      />
+      <Text
+        style={{
+          flex: 1,
+          textAlign: "center",
+          fontFamily: "LexendDeca_400Regular",
+        }}
+      >
+        {setIndex + 1}
+      </Text>
+      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+        <TextInput
+          keyboardType="numeric"
+          style={styles.textInputSmall}
+          placeholder="Weight"
+          onChangeText={handleChange(
+            `weight Workout: ${workoutIndex}, S: ${setIndex}`
+          )}
+          onBlur={handleBlur(`weight Workout: ${workoutIndex} S: ${setIndex}`)}
+        />
+      </View>
       {/* 
       
       // * Having scroll view for weight means that we need to have increments
@@ -57,8 +66,8 @@ export default function SetsAddSection({
       </View> */}
       <View style={styles.scrollPickerContainer}>
         <ScrollPicker
-          dataSource={["1", "2", "3", "4", "5", "6"]}
-          selectedIndex={1}
+          dataSource={Array.from({ length: 20 }, (_, i) => i + 1)}
+          selectedIndex={10}
           renderItem={(data, index) => {
             return <Text>{data}</Text>;
           }}
@@ -69,7 +78,7 @@ export default function SetsAddSection({
               data
             );
           }}
-          wrapperHeight={100}
+          wrapperHeight={91}
           wrapperWidth={10}
           wrapperColor="#FFFFFF"
           // itemHeight={60}
@@ -110,5 +119,5 @@ const styles = StyleSheet.create({
     marginBottom: 8,
     textAlign: "center",
   },
-  scrollPickerContainer: { width: 60, margin: 5 },
+  scrollPickerContainer: { width: 60, margin: 5, flex: 1 },
 });
