@@ -6,6 +6,7 @@ import {
   LexendDeca_300Light,
   LexendDeca_400Regular,
   LexendDeca_500Medium,
+  LexendDeca_700Bold,
 } from "@expo-google-fonts/lexend-deca";
 import { useNavigation } from "@react-navigation/native";
 import Boxes from "../components/home/Boxes";
@@ -39,6 +40,7 @@ const HomeScreen = () => {
     LexendDeca_300Light,
     LexendDeca_400Regular,
     LexendDeca_500Medium,
+    LexendDeca_700Bold,
   });
   const renderItem = (workout) => {
     return <WorkoutCard workout={workout} />;

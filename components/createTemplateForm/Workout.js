@@ -2,7 +2,12 @@ import { TextInput, View, StyleSheet, Text, Pressable } from "react-native";
 import { useState } from "react";
 import SetsAddSection from "./SetsAddSection";
 
-const Workout = ({ index: workoutIndex, handleBlur, handleChange }) => {
+const Workout = ({
+  index: workoutIndex,
+  handleBlur,
+  handleChange,
+  setFieldValue,
+}) => {
   const [sets, setSets] = useState(Array(2).fill(0));
   return (
     <>
@@ -49,6 +54,7 @@ const Workout = ({ index: workoutIndex, handleBlur, handleChange }) => {
               workoutIndex={workoutIndex}
               setIndex={setIndex}
               handleBlur={handleBlur}
+              setFieldValue={setFieldValue}
               handleChange={handleChange}
             />
           );

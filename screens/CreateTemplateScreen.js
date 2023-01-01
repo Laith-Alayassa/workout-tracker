@@ -31,7 +31,7 @@ const CreateTemplateScreen = ({ route }) => {
       initialValues={{}}
       onSubmit={(values) => submitForm(values, navigation, setWorkouts)}
     >
-      {({ handleChange, handleBlur, handleSubmit, values }) => (
+      {({ handleChange, handleBlur, setFieldValue, handleSubmit, values }) => (
         <ScrollView>
           <View>
             <View style={styles.workoutTitleContainer}>
@@ -58,6 +58,7 @@ const CreateTemplateScreen = ({ route }) => {
                   handleBlur={handleBlur}
                   handleChange={handleChange}
                   index={index}
+                  setFieldValue={setFieldValue}
                 />
               );
             })}
