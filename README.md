@@ -1,6 +1,11 @@
 # workout-tracker
 React Native Workout Tracking app. In Progress
 
+## Technologies
+1. React Native
+2. Firebase
+
+## Screenshots
 <img src="https://user-images.githubusercontent.com/60319236/209913801-43d34065-5ece-4fe7-aec9-2fdfddafa2e2.png" width="300">
 
 <p float="left">
