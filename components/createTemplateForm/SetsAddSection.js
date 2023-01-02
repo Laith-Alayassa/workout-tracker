@@ -1,6 +1,5 @@
 import { TextInput, View, StyleSheet, Text } from "react-native";
 import ScrollPicker from "react-native-wheel-scrollview-picker";
-import { weightsArray } from "../../data/arrayGenerator";
 
 export default function SetsAddSection({
   workoutIndex,

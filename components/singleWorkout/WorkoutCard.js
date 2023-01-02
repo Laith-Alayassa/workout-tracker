@@ -6,9 +6,7 @@ const WorkoutCard = ({ workout }) => {
   const title = workout.name;
   const lastPreformed = workout.lastPerformed;
   const exercises = workout.exercises;
-  console.log("====================================");
-  console.log(workout.exercises[0].exercise.sets);
-  console.log("====================================");
+  const key = workout.key;
   return (
     <View style={styles.card}>
       <TouchableWithoutFeedback
@@ -17,6 +15,7 @@ const WorkoutCard = ({ workout }) => {
             title,
             lastPreformed,
             exercises,
+            key,
           })
         }
       >

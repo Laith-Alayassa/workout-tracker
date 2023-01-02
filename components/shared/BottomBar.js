@@ -15,9 +15,6 @@ const BottomBar = () => {
       <TouchableOpacity
         style={styles.barIcons}
         onPress={() => {
-          console.log("====================================");
-          console.log("sup");
-          console.log("====================================");
           writeFormData(fillTemplate(data));
         }}
       >

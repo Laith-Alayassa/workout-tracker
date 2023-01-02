@@ -20,10 +20,9 @@ export function createWorkoutObjects(actualData) {
     workoutObject.name = actualData[index].name;
     workoutObject.exercises = actualData[index].exercises;
     workoutObject.lastPerformed = actualData[index].lastPerformed;
+    workoutObject.key = actualData[index].key;
 
-    console.log(workoutObject.exercises);
     workoutObjectsArray.push(workoutObject);
-    // console.log(actualData[index]);
   }
   return workoutObjectsArray;
 }
@@ -98,11 +97,9 @@ const styles = StyleSheet.create({
 export default HomeScreen;
 export function setDataFromDB(setWorkouts) {
   const data = getFormData();
-
   // The time out is for the data to load
   setTimeout(function () {
     let actualData = data["_z"];
-    console.log(actualData);
     const workoutObjectsArray = createWorkoutObjects(actualData);
     setWorkouts(workoutObjectsArray);
   }, 1000);

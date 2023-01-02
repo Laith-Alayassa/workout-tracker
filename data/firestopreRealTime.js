@@ -1,13 +1,5 @@
 import { initializeApp } from "firebase/app";
-import {
-  getDatabase,
-  ref,
-  set,
-  push,
-  get,
-  child,
-  onSnapshot,
-} from "firebase/database";
+import { getDatabase, ref, push, get, child, remove } from "firebase/database";
 
 // TODO: Replace the following with your app's Firebase project configuration
 // See: https://firebase.google.com/docs/web/learn-more#config-object
@@ -66,6 +58,8 @@ async function getFormData() {
     snapshot.forEach(function (childSnapshot) {
       var key = childSnapshot.key;
       var childData = childSnapshot.val();
+      childData.key = key;
+
       exercisesPLZ.push(childData);
     });
     return exercisesPLZ;
@@ -175,10 +169,21 @@ function writeUserData(userId, name, email) {
   console.log("Done");
 }
 
+async function deleteDocument(collection, id) {
+  const db = getDatabase();
+
+  const tempRef = ref(db, `${collection}/${id}`);
+
+  remove(tempRef).then(() => {
+    console.log("location removed");
+  });
+}
+
 export {
   writeUserData,
   getUserData,
   writeTemplateData,
   writeFormData,
   getFormData,
+  deleteDocument,
 };
