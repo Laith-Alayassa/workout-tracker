@@ -9,42 +9,32 @@ const WorkoutCard = ({ workout }) => {
   const key = workout.key;
   return (
     <View style={styles.card}>
-      <TouchableWithoutFeedback
-        onPress={() =>
-          navigation.navigate("WorkoutScreen", {
-            title,
-            lastPreformed,
-            exercises,
-            key,
-          })
-        }
-      >
-        <View>
-          <View style={styles.titleContainer}>
-            <Text style={styles.title}>{title}</Text>
-            <Text style={styles.lastPerformed}>Performed: {lastPreformed}</Text>
-          </View>
-          <View>
-            {exercises.map((exercise) => {
-              return (
-                <View style={styles.workoutNameContainer}>
-                  <View>
-                    <Text style={styles.workoutName}>
-                      {exercise.exercise.name}
-                    </Text>
-                  </View>
-                  <View>
-                    <Text style={styles.workoutName}>
-                      {/* Only # number of sets because # reps could change each set */}
-                      X {exercise.exercise.sets.length}
-                    </Text>
-                  </View>
-                </View>
-              );
-            })}
-          </View>
+      <View>
+        <View style={styles.titleContainer}>
+          <Text style={styles.title}>{title}</Text>
+          <Text style={styles.lastPerformed}>Performed: {lastPreformed}</Text>
         </View>
-      </TouchableWithoutFeedback>
+        <View>
+          {exercises.map((exercise) => {
+            return (
+              <View style={styles.workoutNameContainer}>
+                <View>
+                  <Text style={styles.workoutName}>
+                    {exercise.exercise.name}
+                  </Text>
+                </View>
+                <View>
+                  <Text style={styles.workoutName}>
+                    {/* Only # number of sets because # reps could change each set */}
+                    X {exercise.exercise.sets.length}
+                  </Text>
+                </View>
+              </View>
+            );
+          })}
+        </View>
+      </View>
+      {/* </TouchableWithoutFeedback> */}
     </View>
   );
 };

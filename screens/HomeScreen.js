@@ -1,4 +1,10 @@
-import { View, StyleSheet, Text, ScrollView } from "react-native";
+import {
+  View,
+  StyleSheet,
+  Text,
+  ScrollView,
+  TouchableWithoutFeedback,
+} from "react-native";
 import WorkoutCard from "../components/singleWorkout/WorkoutCard";
 import AppLoading from "expo-app-loading";
 import {
@@ -11,7 +17,16 @@ import {
 import { useNavigation } from "@react-navigation/native";
 import Boxes from "../components/home/Boxes";
 import { useEffect, useState } from "react";
-import { getFormData } from "../data/firestopreRealTime";
+import { deleteDocument, getFormData } from "../data/firestopreRealTime";
+import {
+  Menu,
+  MenuOptions,
+  MenuOption,
+  renderers,
+  MenuTrigger,
+} from "react-native-popup-menu";
+
+const { SlideInMenu } = renderers;
 
 export function createWorkoutObjects(actualData) {
   let workoutObjectsArray = [];
@@ -29,10 +44,11 @@ export function createWorkoutObjects(actualData) {
 
 const HomeScreen = () => {
   const [workouts, setWorkouts] = useState([]);
+  const [itemDeleted, SetItemDeleted] = useState(false);
 
   useEffect(() => {
     setDataFromDB(setWorkouts);
-  }, []);
+  }, [itemDeleted]);
 
   const navigation = useNavigation();
   let [fontsLoaded] = useFonts({
@@ -57,8 +73,49 @@ const HomeScreen = () => {
             {/* Margin Bottom so bottom navigation doesn't overlap */}
             <View style={{ marginBottom: 80 }}>
               {workouts.map((workout) => {
+                const navigation = useNavigation();
+                const title = workout.name;
+                const lastPreformed = workout.lastPerformed;
+                const exercises = workout.exercises;
+                const key = workout.key;
                 // return <Text>Place Holder Workout</Text>;
-                return <WorkoutCard workout={workout}></WorkoutCard>;
+                return (
+                  <View>
+                    <Menu renderer={SlideInMenu}>
+                      <MenuTrigger
+                        customStyles={{
+                          TriggerTouchableComponent: TouchableWithoutFeedback,
+                        }}
+                      >
+                        <WorkoutCard workout={workout}></WorkoutCard>
+                      </MenuTrigger>
+                      <MenuOptions style={{ marginBottom: 50 }}>
+                        <MenuOption
+                          style={{ padding: 36 }}
+                          onSelect={() =>
+                            navigation.navigate("WorkoutScreen", {
+                              title,
+                              lastPreformed,
+                              exercises,
+                              key,
+                            })
+                          }
+                          text="Start workout"
+                        />
+                        <MenuOption
+                          style={{ padding: 36 }}
+                          onSelect={() => {
+                            deleteDocument("users", key).then(
+                              SetItemDeleted(!itemDeleted)
+                            );
+                          }}
+                        >
+                          <Text style={{ color: "red" }}>Delete</Text>
+                        </MenuOption>
+                      </MenuOptions>
+                    </Menu>
+                  </View>
+                );
               })}
             </View>
           </ScrollView>

@@ -12,57 +12,60 @@ import WorkoutScreen from "./screens/WorkoutScreen";
 import TimerScreen from "./screens/TimerScreen";
 import StopWatch from "./components/shared/StopWatch";
 import CreateTemplateScreen from "./screens/CreateTemplateScreen";
+import { MenuProvider } from "react-native-popup-menu";
 
 const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
-    <PaperProvider theme={theme}>
-      <SafeAreaView style={GlobalStyles.droidSafeArea}>
-        <NavigationContainer>
-          <Stack.Navigator>
-            <Stack.Screen
-              name="Home"
-              component={HomeScreen}
-              options={{
-                headerTitleAlign: "center",
-              }}
-            />
-            <Stack.Screen
-              name="WorkoutScreen"
-              component={WorkoutScreen}
-              options={{
-                headerTitleAlign: "center",
-                headerTitle: (props) => <StopWatch />,
-              }}
-            />
-            <Stack.Screen
-              name="Timer"
-              component={TimerScreen}
-              options={{
-                headerTitleAlign: "center",
-                title: "Timer",
-              }}
-            />
-            <Stack.Screen
-              name="StopWatch"
-              component={StopWatch}
-              options={{
-                headerTitleAlign: "center",
-                title: "Timer",
-              }}
-            />
-            <Stack.Screen
-              name="CreateTemplate"
-              component={CreateTemplateScreen}
-              options={{
-                headerTitleAlign: "center",
-                title: "🔨 Create Template 🔨",
-              }}
-            />
-          </Stack.Navigator>
-        </NavigationContainer>
-      </SafeAreaView>
-    </PaperProvider>
+    <MenuProvider>
+      <PaperProvider theme={theme}>
+        <SafeAreaView style={GlobalStyles.droidSafeArea}>
+          <NavigationContainer>
+            <Stack.Navigator>
+              <Stack.Screen
+                name="Home"
+                component={HomeScreen}
+                options={{
+                  headerTitleAlign: "center",
+                }}
+              />
+              <Stack.Screen
+                name="WorkoutScreen"
+                component={WorkoutScreen}
+                options={{
+                  headerTitleAlign: "center",
+                  headerTitle: (props) => <StopWatch />,
+                }}
+              />
+              <Stack.Screen
+                name="Timer"
+                component={TimerScreen}
+                options={{
+                  headerTitleAlign: "center",
+                  title: "Timer",
+                }}
+              />
+              <Stack.Screen
+                name="StopWatch"
+                component={StopWatch}
+                options={{
+                  headerTitleAlign: "center",
+                  title: "Timer",
+                }}
+              />
+              <Stack.Screen
+                name="CreateTemplate"
+                component={CreateTemplateScreen}
+                options={{
+                  headerTitleAlign: "center",
+                  title: "🔨 Create Template 🔨",
+                }}
+              />
+            </Stack.Navigator>
+          </NavigationContainer>
+        </SafeAreaView>
+      </PaperProvider>
+    </MenuProvider>
   );
 }

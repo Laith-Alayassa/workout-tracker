@@ -21,6 +21,7 @@
     "react-native": "0.70.5",
     "react-native-countdown-circle-timer": "^3.1.0",
     "react-native-paper": "^5.1.0",
+    "react-native-popup-menu": "^0.16.1",
     "react-native-safe-area-context": "4.4.1",
     "react-native-screens": "~3.18.0",
     "react-native-stopwatch-timer": "^0.0.21",
