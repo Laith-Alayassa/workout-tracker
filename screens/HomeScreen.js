@@ -4,6 +4,7 @@ import {
   Text,
   ScrollView,
   TouchableWithoutFeedback,
+  ActivityIndicator,
 } from "react-native";
 import WorkoutCard from "../components/singleWorkout/WorkoutCard";
 import AppLoading from "expo-app-loading";
@@ -106,7 +107,11 @@ const HomeScreen = () => {
       </>
     );
   } else {
-    return <AppLoading />;
+    return (
+      <View style={{ flex: 1, justifyContent: "center" }}>
+        <ActivityIndicator size="large" />
+      </View>
+    );
   }
 };
 const styles = StyleSheet.create({
@@ -155,9 +160,9 @@ function workoutCardWithPressMenu(
         >
           <WorkoutCard workout={workout}></WorkoutCard>
         </MenuTrigger>
-        <MenuOptions style={{ marginBottom: 50 }}>
+        <MenuOptions>
           <MenuOption
-            style={{ padding: 36 }}
+            style={{ padding: 36, backgroundColor: "#1B1B1B" }}
             onSelect={() => {
               navigation.navigate("WorkoutScreen", {
                 title,
@@ -172,15 +177,33 @@ function workoutCardWithPressMenu(
               addWorkoutToCalendar();
               SetItemChange((value) => !value);
             }}
-            text="Start workout"
-          />
+          >
+            <Text
+              style={{
+                fontFamily: "LexendDeca_700Bold",
+                fontSize: 19,
+                color: "white",
+              }}
+            >
+              Start Workout
+            </Text>
+          </MenuOption>
           <MenuOption
-            style={{ padding: 36 }}
+            // style={{ padding: 36 }}
             onSelect={() => {
               deleteDocument("users", key).then(SetItemDeleted(!itemDeleted));
             }}
           >
-            <Text style={{ color: "red" }}>Delete</Text>
+            <Text
+              style={{
+                padding: 36,
+                fontFamily: "LexendDeca_400Regular",
+                fontSize: 16,
+                color: "red",
+              }}
+            >
+              Delete
+            </Text>
           </MenuOption>
         </MenuOptions>
       </Menu>

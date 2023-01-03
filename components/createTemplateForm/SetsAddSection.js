@@ -39,7 +39,7 @@ export default function SetsAddSection({
 
       <View style={styles.scrollPickerContainer}>
         <ScrollPicker
-          dataSource={Array.from({ length: 20 }, (_, i) => i + 1)}
+          dataSource={Array.from({ length: 26 }, (_, i) => i)}
           selectedIndex={0}
           renderItem={(data, index) => {
             return <Text>{data}</Text>;

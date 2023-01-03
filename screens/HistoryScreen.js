@@ -1,5 +1,11 @@
 import React, { useMemo, useState, useCallback, useEffect } from "react";
-import { StyleSheet, View, Switch, Text } from "react-native";
+import {
+  StyleSheet,
+  View,
+  Switch,
+  Text,
+  ActivityIndicator,
+} from "react-native";
 import { NewCalendarList } from "react-native-calendars";
 import { getWorkoutDays } from "../data/firestopreRealTime";
 
@@ -10,9 +16,10 @@ const NewCalendarListScreen = () => {
   const [selected, setSelected] = useState(initialDate);
   const [isHorizontal, setIsHorizontal] = useState(false);
   const [markedDates, setMarkedDates] = useState({});
+  const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
-    getFormattedWorkoutDays(setMarkedDates);
+    getFormattedWorkoutDays(setMarkedDates, setLoaded);
   }, []);
   const onValueChange = useCallback(
     (value) => {
@@ -36,6 +43,13 @@ const NewCalendarListScreen = () => {
     };
   }, [selected, markedDates, onDayPress]);
 
+  if (!loaded) {
+    return (
+      <View style={{ flex: 1, justifyContent: "center" }}>
+        <ActivityIndicator size="large" />
+      </View>
+    );
+  }
   return (
     <View style={styles.container}>
       <View style={styles.switchView}>
@@ -57,7 +71,7 @@ const NewCalendarListScreen = () => {
 
 export default NewCalendarListScreen;
 
-function getFormattedWorkoutDays(setMarkedDates) {
+function getFormattedWorkoutDays(setMarkedDates, setLoaded) {
   const workoutDays = getWorkoutDays();
   let formattedData = {};
   setTimeout(function () {
@@ -69,6 +83,7 @@ function getFormattedWorkoutDays(setMarkedDates) {
       };
     });
     setMarkedDates(formattedData);
+    setLoaded(true);
     return formattedData;
   }, 1000);
 }
@@ -93,7 +108,6 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     alignItems: "center",
     position: "absolute",
-    borderTopWidth: 1,
     bottom: 0,
     right: 0,
     left: 0,
