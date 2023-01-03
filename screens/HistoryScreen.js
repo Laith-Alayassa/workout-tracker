@@ -3,7 +3,8 @@ import { StyleSheet, View, Switch, Text } from "react-native";
 import { NewCalendarList } from "react-native-calendars";
 import { getWorkoutDays } from "../data/firestopreRealTime";
 
-const initialDate = "2020-05-16";
+const initialDate = getTodaysDate();
+
 // const testIDs = [1, 2, 3, 4, 5, 6];
 const NewCalendarListScreen = () => {
   const [selected, setSelected] = useState(initialDate);
@@ -61,11 +62,23 @@ function getFormattedWorkoutDays(setMarkedDates) {
   let formattedData = {};
   setTimeout(function () {
     workoutDays.forEach((date) => {
-      formattedData[date] = { selected: true, marked: true };
+      formattedData[date] = {
+        selected: true,
+        marked: true,
+        selectedColor: "rgb(0, 200, 254)",
+      };
     });
     setMarkedDates(formattedData);
     return formattedData;
   }, 1000);
+}
+
+function getTodaysDate() {
+  const date = new Date();
+  const year = date.getFullYear();
+  const month = date.getMonth() + 1;
+  const day = date.getDate();
+  return `${year}-${month}-${day}`;
 }
 
 const styles = StyleSheet.create({

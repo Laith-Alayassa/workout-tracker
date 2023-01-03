@@ -7,6 +7,7 @@ import {
   child,
   remove,
   update,
+  set,
 } from "firebase/database";
 
 // TODO: Replace the following with your app's Firebase project configuration
@@ -31,6 +32,16 @@ function writeTemplateData(formInfo) {
 
   push(reference, userInfo);
   console.log("Done");
+}
+
+function addWorkoutToCalendar() {
+  const formattedDateString = new Date().toISOString().slice(0, 10);
+
+  const db = getDatabase();
+  const reference = ref(db, `history/${formattedDateString}`);
+
+  set(reference, true);
+  console.log("Done adding date to history in DB");
 }
 
 function getUserData(userId) {
@@ -207,4 +218,5 @@ export {
   deleteDocument,
   updateLastPerformedDate,
   getWorkoutDays,
+  addWorkoutToCalendar,
 };

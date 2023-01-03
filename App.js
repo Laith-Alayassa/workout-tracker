@@ -1,5 +1,5 @@
 import { NavigationContainer } from "@react-navigation/native";
-import { SafeAreaView } from "react-native";
+import { SafeAreaView, LogBox } from "react-native";
 import HomeScreen from "./screens/HomeScreen";
 import GlobalStyles from "./styles/GlobalStyles";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
@@ -11,10 +11,11 @@ import StopWatch from "./components/shared/StopWatch";
 import CreateTemplateScreen from "./screens/CreateTemplateScreen";
 import HistoryScreen from "./screens/HistoryScreen";
 import { MenuProvider } from "react-native-popup-menu";
-import { LogBox } from "react-native";
+
 LogBox.ignoreLogs([
   "Non-serializable values were found in the navigation state",
 ]);
+
 const Stack = createNativeStackNavigator();
 
 export default function App() {

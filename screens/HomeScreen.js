@@ -18,6 +18,7 @@ import { useNavigation } from "@react-navigation/native";
 import Boxes from "../components/home/Boxes";
 import { useEffect, useState } from "react";
 import {
+  addWorkoutToCalendar,
   deleteDocument,
   getFormData,
   updateLastPerformedDate,
@@ -168,6 +169,7 @@ function workoutCardWithPressMenu(
                 workout.key,
                 new Date().toLocaleDateString()
               );
+              addWorkoutToCalendar();
               SetItemChange((value) => !value);
             }}
             text="Start workout"

@@ -32,7 +32,6 @@ const Set = ({ index, reps, weight }) => {
 };
 
 const ExerciseLog = ({ exercise }) => {
-  console.log(exercise.sets[0]);
   const name = exercise.name;
   const reps = exercise.reps;
   const sets = exercise.sets;
