@@ -177,6 +177,27 @@ async function deleteDocument(collection, id) {
   });
 }
 
+function getWorkoutDays() {
+  const dbRef = ref(getDatabase());
+  let values = [];
+  get(child(dbRef, `history/`))
+    .then((snapshot) => {
+      if (snapshot.exists()) {
+        console.log(snapshot.val());
+        snapshot.forEach(function (childSnapshot) {
+          var key = childSnapshot.key;
+          values.push(key);
+        });
+      } else {
+        console.log("No data available");
+      }
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+  return values;
+}
+
 export {
   writeUserData,
   getUserData,
@@ -185,4 +206,5 @@ export {
   getFormData,
   deleteDocument,
   updateLastPerformedDate,
+  getWorkoutDays,
 };

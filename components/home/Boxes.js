@@ -28,7 +28,10 @@ export default function Boxes({ setWorkouts }) {
         </View>
         <Text>Create New</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={{ alignItems: "center" }} onPress={getFormData}>
+      <TouchableOpacity
+        style={{ alignItems: "center" }}
+        onPress={() => navigation.navigate("HistoryScreen")}
+      >
         <View style={styles.heroBox}>
           <Image
             style={styles.icon}

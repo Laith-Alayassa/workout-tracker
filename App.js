@@ -9,9 +9,9 @@ import WorkoutScreen from "./screens/WorkoutScreen";
 import TimerScreen from "./screens/TimerScreen";
 import StopWatch from "./components/shared/StopWatch";
 import CreateTemplateScreen from "./screens/CreateTemplateScreen";
+import HistoryScreen from "./screens/HistoryScreen";
 import { MenuProvider } from "react-native-popup-menu";
 import { LogBox } from "react-native";
-
 LogBox.ignoreLogs([
   "Non-serializable values were found in the navigation state",
 ]);
@@ -61,6 +61,14 @@ export default function App() {
                 options={{
                   headerTitleAlign: "center",
                   title: "🔨 Create Template 🔨",
+                }}
+              />
+              <Stack.Screen
+                name="HistoryScreen"
+                component={HistoryScreen}
+                options={{
+                  headerTitleAlign: "center",
+                  title: "History",
                 }}
               />
             </Stack.Navigator>
