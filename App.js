@@ -3,17 +3,18 @@ import { SafeAreaView } from "react-native";
 import HomeScreen from "./screens/HomeScreen";
 import GlobalStyles from "./styles/GlobalStyles";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import {
-  MD3LightTheme as DefaultTheme,
-  Provider as PaperProvider,
-} from "react-native-paper";
+import { Provider as PaperProvider } from "react-native-paper";
 import { theme } from "./styles/theme";
 import WorkoutScreen from "./screens/WorkoutScreen";
 import TimerScreen from "./screens/TimerScreen";
 import StopWatch from "./components/shared/StopWatch";
 import CreateTemplateScreen from "./screens/CreateTemplateScreen";
 import { MenuProvider } from "react-native-popup-menu";
+import { LogBox } from "react-native";
 
+LogBox.ignoreLogs([
+  "Non-serializable values were found in the navigation state",
+]);
 const Stack = createNativeStackNavigator();
 
 export default function App() {

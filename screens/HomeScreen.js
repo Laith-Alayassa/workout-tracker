@@ -45,9 +45,11 @@ export function createWorkoutObjects(actualData) {
 const HomeScreen = () => {
   const [workouts, setWorkouts] = useState([]);
   const [itemDeleted, SetItemDeleted] = useState(false);
+  const [dataLoaded, setDataLoaded] = useState(false);
 
   useEffect(() => {
     setDataFromDB(setWorkouts);
+    setDataLoaded(true);
   }, [itemDeleted]);
 
   const navigation = useNavigation();
@@ -61,7 +63,7 @@ const HomeScreen = () => {
     return <WorkoutCard workout={workout} />;
   };
 
-  if (fontsLoaded) {
+  if (fontsLoaded && dataLoaded) {
     return (
       <>
         <View style={styles.home}>
@@ -73,48 +75,22 @@ const HomeScreen = () => {
             {/* Margin Bottom so bottom navigation doesn't overlap */}
             <View style={{ marginBottom: 80 }}>
               {workouts.map((workout) => {
-                const navigation = useNavigation();
                 const title = workout.name;
                 const lastPreformed = workout.lastPerformed;
                 const exercises = workout.exercises;
                 const key = workout.key;
-                // return <Text>Place Holder Workout</Text>;
                 return (
-                  <View>
-                    <Menu renderer={SlideInMenu}>
-                      <MenuTrigger
-                        customStyles={{
-                          TriggerTouchableComponent: TouchableWithoutFeedback,
-                        }}
-                      >
-                        <WorkoutCard workout={workout}></WorkoutCard>
-                      </MenuTrigger>
-                      <MenuOptions style={{ marginBottom: 50 }}>
-                        <MenuOption
-                          style={{ padding: 36 }}
-                          onSelect={() =>
-                            navigation.navigate("WorkoutScreen", {
-                              title,
-                              lastPreformed,
-                              exercises,
-                              key,
-                            })
-                          }
-                          text="Start workout"
-                        />
-                        <MenuOption
-                          style={{ padding: 36 }}
-                          onSelect={() => {
-                            deleteDocument("users", key).then(
-                              SetItemDeleted(!itemDeleted)
-                            );
-                          }}
-                        >
-                          <Text style={{ color: "red" }}>Delete</Text>
-                        </MenuOption>
-                      </MenuOptions>
-                    </Menu>
-                  </View>
+                  // TODO: Make this a component
+                  workoutCardWithPressMenu(
+                    workout,
+                    navigation,
+                    title,
+                    lastPreformed,
+                    exercises,
+                    key,
+                    SetItemDeleted,
+                    itemDeleted
+                  )
                 );
               })}
             </View>
@@ -152,10 +128,57 @@ const styles = StyleSheet.create({
 });
 
 export default HomeScreen;
+function workoutCardWithPressMenu(
+  workout,
+  navigation,
+  title,
+  lastPreformed,
+  exercises,
+  key,
+  SetItemDeleted,
+  itemDeleted
+) {
+  return (
+    <View key={workout.key}>
+      <Menu renderer={SlideInMenu}>
+        <MenuTrigger
+          customStyles={{
+            TriggerTouchableComponent: TouchableWithoutFeedback,
+          }}
+        >
+          <WorkoutCard workout={workout}></WorkoutCard>
+        </MenuTrigger>
+        <MenuOptions style={{ marginBottom: 50 }}>
+          <MenuOption
+            style={{ padding: 36 }}
+            onSelect={() =>
+              navigation.navigate("WorkoutScreen", {
+                title,
+                lastPreformed,
+                exercises,
+                key,
+              })
+            }
+            text="Start workout"
+          />
+          <MenuOption
+            style={{ padding: 36 }}
+            onSelect={() => {
+              deleteDocument("users", key).then(SetItemDeleted(!itemDeleted));
+            }}
+          >
+            <Text style={{ color: "red" }}>Delete</Text>
+          </MenuOption>
+        </MenuOptions>
+      </Menu>
+    </View>
+  );
+}
+
 export function setDataFromDB(setWorkouts) {
   const data = getFormData();
   // The time out is for the data to load
-  setTimeout(function () {
+  setTimeout(async function () {
     let actualData = data["_z"];
     const workoutObjectsArray = createWorkoutObjects(actualData);
     setWorkouts(workoutObjectsArray);

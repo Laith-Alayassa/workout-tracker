@@ -36,37 +36,11 @@ export default function SetsAddSection({
           onBlur={handleBlur(`weight Workout: ${workoutIndex} S: ${setIndex}`)}
         />
       </View>
-      {/* 
-      
-      // * Having scroll view for weight means that we need to have increments
-      // * by 0.5 pounds, loading the array of these weights is very slow
-      */}
-      {/* <View style={styles.scrollPickerContainer}>
-        <ScrollPicker
-          dataSource={weightsArray}
-          selectedIndex={51}
-          renderItem={(data, index) => {
-            return <Text>{data}</Text>;
-          }}
-          onValueChange={(data, selectedIndex) => {
-            // handleChange(`weight Workout: ${workoutIndex}, S: ${setIndex}`);
-            setFieldValue(
-              `weight Workout: ${workoutIndex}, S: ${setIndex}`,
-              data
-            );
-          }}
-          wrapperHeight={100}
-          wrapperWidth={10}
-          wrapperColor="#FFFFFF"
-          // itemHeight={60}
-          highlightColor="#d8d8d8"
-          highlightBorderWidth={2}
-        />
-      </View> */}
+
       <View style={styles.scrollPickerContainer}>
         <ScrollPicker
           dataSource={Array.from({ length: 20 }, (_, i) => i + 1)}
-          selectedIndex={10}
+          selectedIndex={0}
           renderItem={(data, index) => {
             return <Text>{data}</Text>;
           }}

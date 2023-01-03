@@ -8,7 +8,7 @@ const Workout = ({
   handleChange,
   setFieldValue,
 }) => {
-  const [sets, setSets] = useState(Array(2).fill(0));
+  const [sets, setSets] = useState(Array(1).fill(0));
   return (
     <>
       <View style={styles.set}>
@@ -38,6 +38,7 @@ const Workout = ({
         {sets.map((set, setIndex) => {
           return (
             <SetsAddSection
+              key={setIndex}
               workoutIndex={workoutIndex}
               setIndex={setIndex}
               handleBlur={handleBlur}

@@ -70,24 +70,6 @@ async function getFormData() {
   return exercisesPLZ;
 }
 
-// async function getFormDataOnSnapshot() {
-//   const db = getDatabase
-//   const dbRef = ref(getDatabase());
-//   let snapshot = await get(child(dbRef, `users/`));
-//   if (snapshot.exists()) {
-//     snapshot.forEach(function (childSnapshot) {
-//       var key = childSnapshot.key;
-//       var childData = childSnapshot.val();
-//       exercisesPLZ.push(childData);
-//     });
-//     return exercisesPLZ;
-//   } else {
-//     console.log("No data available");
-//   }
-
-//   return exercisesPLZ;
-// }
-
 function writeUserData(userId, name, email) {
   const db = getDatabase();
   const reference = ref(db, "users/");

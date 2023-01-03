@@ -3,10 +3,10 @@ import { TextInput, View, StyleSheet, Text, ScrollView } from "react-native";
 import { Formik } from "formik";
 import Workout from "../components/createTemplateForm/Workout";
 import EndFormButtons from "../components/createTemplateForm/EndFormButtons";
-import { getFormData, writeFormData } from "../data/firestopreRealTime";
+import { writeFormData } from "../data/firestopreRealTime";
 import { formatFormForFirebaseUpload } from "../formFormatter";
 import { useNavigation } from "@react-navigation/native";
-import { createWorkoutObjects, setDataFromDB } from "./HomeScreen";
+import { setDataFromDB } from "./HomeScreen";
 
 const submitForm = (values, navigation, setWorkouts) => {
   const form = formatFormForFirebaseUpload(values);
@@ -23,7 +23,7 @@ const submitForm = (values, navigation, setWorkouts) => {
 const CreateTemplateScreen = ({ route }) => {
   const { setWorkouts } = route.params;
   const navigation = useNavigation();
-  const [workoutsNum, setWorkoutsNum] = useState(Array(3).fill(0));
+  const [workoutsNum, setWorkoutsNum] = useState(Array(1).fill(0));
 
   return (
     <Formik
@@ -55,6 +55,7 @@ const CreateTemplateScreen = ({ route }) => {
             {workoutsNum.map((exercise, index) => {
               return (
                 <Workout
+                  key={index}
                   handleBlur={handleBlur}
                   handleChange={handleChange}
                   index={index}
