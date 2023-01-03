@@ -1,5 +1,13 @@
 import { initializeApp } from "firebase/app";
-import { getDatabase, ref, push, get, child, remove } from "firebase/database";
+import {
+  getDatabase,
+  ref,
+  push,
+  get,
+  child,
+  remove,
+  update,
+} from "firebase/database";
 
 // TODO: Replace the following with your app's Firebase project configuration
 // See: https://firebase.google.com/docs/web/learn-more#config-object
@@ -68,6 +76,14 @@ async function getFormData() {
   }
 
   return exercisesPLZ;
+}
+
+function updateLastPerformedDate(key, date) {
+  const db = getDatabase();
+  const reference = ref(db, "users/");
+  update(ref(db, `users/${key}`), {
+    lastPerformed: date,
+  });
 }
 
 function writeUserData(userId, name, email) {
@@ -168,4 +184,5 @@ export {
   writeFormData,
   getFormData,
   deleteDocument,
+  updateLastPerformedDate,
 };

@@ -17,7 +17,11 @@ import {
 import { useNavigation } from "@react-navigation/native";
 import Boxes from "../components/home/Boxes";
 import { useEffect, useState } from "react";
-import { deleteDocument, getFormData } from "../data/firestopreRealTime";
+import {
+  deleteDocument,
+  getFormData,
+  updateLastPerformedDate,
+} from "../data/firestopreRealTime";
 import {
   Menu,
   MenuOptions,
@@ -44,13 +48,13 @@ export function createWorkoutObjects(actualData) {
 
 const HomeScreen = () => {
   const [workouts, setWorkouts] = useState([]);
-  const [itemDeleted, SetItemDeleted] = useState(false);
+  const [itemChange, SetItemChange] = useState(false);
   const [dataLoaded, setDataLoaded] = useState(false);
 
   useEffect(() => {
     setDataFromDB(setWorkouts);
     setDataLoaded(true);
-  }, [itemDeleted]);
+  }, [itemChange]);
 
   const navigation = useNavigation();
   let [fontsLoaded] = useFonts({
@@ -88,8 +92,9 @@ const HomeScreen = () => {
                     lastPreformed,
                     exercises,
                     key,
-                    SetItemDeleted,
-                    itemDeleted
+                    SetItemChange,
+                    itemChange,
+                    SetItemChange
                   )
                 );
               })}
@@ -136,7 +141,8 @@ function workoutCardWithPressMenu(
   exercises,
   key,
   SetItemDeleted,
-  itemDeleted
+  itemDeleted,
+  SetItemChange
 ) {
   return (
     <View key={workout.key}>
@@ -151,14 +157,19 @@ function workoutCardWithPressMenu(
         <MenuOptions style={{ marginBottom: 50 }}>
           <MenuOption
             style={{ padding: 36 }}
-            onSelect={() =>
+            onSelect={() => {
               navigation.navigate("WorkoutScreen", {
                 title,
                 lastPreformed,
                 exercises,
                 key,
-              })
-            }
+              });
+              updateLastPerformedDate(
+                workout.key,
+                new Date().toLocaleDateString()
+              );
+              SetItemChange((value) => !value);
+            }}
             text="Start workout"
           />
           <MenuOption
