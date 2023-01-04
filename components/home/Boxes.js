@@ -1,7 +1,5 @@
 import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
-import React from "react";
 import { useNavigation } from "@react-navigation/native";
-import { getFormData } from "../../data/firestopreRealTime";
 
 export default function Boxes({ setWorkouts }) {
   const navigation = useNavigation();
@@ -14,7 +12,7 @@ export default function Boxes({ setWorkouts }) {
             source={require("../../assets/icons/template2.png")}
           ></Image>
         </View>
-        <Text>Template</Text>
+        <Text style={styles.textStyles}>Template</Text>
       </TouchableOpacity>
       <TouchableOpacity
         style={{ alignItems: "center" }}
@@ -26,7 +24,7 @@ export default function Boxes({ setWorkouts }) {
             source={require("../../assets/icons/newFolder.png")}
           ></Image>
         </View>
-        <Text>Create New</Text>
+        <Text style={styles.textStyles}>Create New</Text>
       </TouchableOpacity>
       <TouchableOpacity
         style={{ alignItems: "center" }}
@@ -38,7 +36,7 @@ export default function Boxes({ setWorkouts }) {
             source={require("../../assets/icons/history.png")}
           ></Image>
         </View>
-        <Text>History</Text>
+        <Text style={styles.textStyles}>History</Text>
       </TouchableOpacity>
       <TouchableOpacity style={{ alignItems: "center" }}>
         <View style={styles.heroBox}>
@@ -47,7 +45,7 @@ export default function Boxes({ setWorkouts }) {
             source={require("../../assets/icons/weights.png")}
           ></Image>
         </View>
-        <Text>Exercises</Text>
+        <Text style={styles.textStyles}>Exercises</Text>
       </TouchableOpacity>
     </View>
   );
@@ -72,4 +70,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   icon: { width: 32, height: 32 },
+  textStyles: {
+    fontFamily: "LexendDeca_400Regular",
+  },
 });

@@ -1,6 +1,13 @@
 import { useNavigation } from "@react-navigation/native";
 import { useState } from "react";
-import { Button, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import {
+  Button,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+  Vibration,
+} from "react-native";
 import { CountdownCircleTimer } from "react-native-countdown-circle-timer";
 import { Ionicons } from "@expo/vector-icons";
 
@@ -46,7 +53,7 @@ const Timer = () => {
           colors={["#1A237E", "#A30000", "red"]}
           colorsTime={[10, 7, 0]}
           onComplete={() => {
-            // it doesn't go back if I keep taking the count to zero!
+            Vibration.vibrate(1000);
             navigation.goBack();
           }}
         >

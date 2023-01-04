@@ -1,20 +1,11 @@
-import { View, Text, StyleSheet, ScrollView, Button } from "react-native";
+import { View, Text, StyleSheet, ScrollView } from "react-native";
 import ExerciseLog from "../components/singleWorkout/ExerciseLog";
-import { deleteDocument } from "../data/firestopreRealTime";
 
 const WorkoutScreen = ({ route }) => {
-  const { title, exercises, key } = route.params;
+  const { title, exercises } = route.params;
   return (
     <ScrollView style={{ backgroundColor: "white" }}>
-      <View style={{ marginTop: 16 }}>
-        <Button
-          color={"red"}
-          title="Delete template"
-          onPress={() => {
-            deleteDocument("users", key);
-          }}
-        />
-      </View>
+      <View></View>
       <View style={styles.titleContainer}>
         <Text style={styles.title}>⚓️ {title} ⚓️</Text>
       </View>
