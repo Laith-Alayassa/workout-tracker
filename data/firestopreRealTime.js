@@ -75,8 +75,8 @@ async function getFormData() {
   let snapshot = await get(child(dbRef, `users/`));
   if (snapshot.exists()) {
     snapshot.forEach(function (childSnapshot) {
-      var key = childSnapshot.key;
-      var childData = childSnapshot.val();
+      let key = childSnapshot.key;
+      let childData = childSnapshot.val();
       childData.key = key;
 
       exercisesPLZ.push(childData);
@@ -91,91 +91,9 @@ async function getFormData() {
 
 function updateLastPerformedDate(key, date) {
   const db = getDatabase();
-  const reference = ref(db, "users/");
   update(ref(db, `users/${key}`), {
     lastPerformed: date,
   });
-}
-
-function writeUserData(userId, name, email) {
-  const db = getDatabase();
-  const reference = ref(db, "users/");
-  const userInfo = {
-    templates: {
-      chestWorkout: {
-        lastPerformed: "jan-20-2022",
-        exercises: {
-          benchPress: {
-            weightPR: 220,
-            repsPR: 20,
-            sets: {
-              1: {
-                reps: 10,
-                weight: 160,
-              },
-              2: {
-                reps: 10,
-                weight: 160,
-              },
-            },
-          },
-          inclineCable: {
-            weightPR: 220,
-            repsPR: 20,
-            sets: {
-              1: {
-                reps: 10,
-                weight: 160,
-              },
-              2: {
-                reps: 10,
-                weight: 160,
-              },
-            },
-          },
-        },
-      },
-      backWorkout: {
-        lastPerformed: "jan-20-2022",
-        exercises: {
-          benchPress: {
-            weightPR: 220,
-            repsPR: 20,
-            sets: {
-              1: {
-                reps: 10,
-                weight: 160,
-              },
-              2: {
-                reps: 10,
-                weight: 160,
-              },
-            },
-          },
-          inclineCable: {
-            weightPR: 220,
-            repsPR: 20,
-            sets: {
-              1: {
-                reps: 10,
-                weight: 160,
-              },
-              2: {
-                reps: 10,
-                weight: 160,
-              },
-            },
-          },
-        },
-      },
-    },
-  };
-  push(reference, userInfo);
-  //   set(ref(db, "users/" + userId), {
-  //     username: name,
-  //     email: email,
-  //   });
-  console.log("Done");
 }
 
 async function deleteDocument(collection, id) {
@@ -194,9 +112,8 @@ function getWorkoutDays() {
   get(child(dbRef, `history/`))
     .then((snapshot) => {
       if (snapshot.exists()) {
-        console.log(snapshot.val());
         snapshot.forEach(function (childSnapshot) {
-          var key = childSnapshot.key;
+          let key = childSnapshot.key;
           values.push(key);
         });
       } else {
@@ -210,7 +127,6 @@ function getWorkoutDays() {
 }
 
 export {
-  writeUserData,
   getUserData,
   writeTemplateData,
   writeFormData,

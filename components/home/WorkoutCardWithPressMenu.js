@@ -22,11 +22,10 @@ const WorkoutCardWithPressMenu = (props) => {
   const title = props.workout.name;
   const lastPreformed = props.workout.lastPreformed;
   const exercises = props.workout.exercises;
-  const key = props.workout.key;
+  const key = props.key;
   const SetItemChange = props.SetItemChange;
 
   const navigation = useNavigation();
-  useNavigation;
   return (
     <View key={workout.key}>
       <Menu renderer={SlideInMenu}>
