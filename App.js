@@ -28,7 +28,7 @@ export default function App() {
         <SafeAreaView style={GlobalStyles.droidSafeArea}>
           <NavigationContainer>
             <Stack.Navigator>
-              <Stack.Screen
+              {/* <Stack.Screen
                 name="Start"
                 component={StartScreen}
                 options={{
@@ -50,7 +50,7 @@ export default function App() {
                   headerTitleAlign: "center",
                   // headerBackVisible: false,
                 }}
-              />
+              /> */}
               <Stack.Screen
                 name="Home"
                 component={HomeScreen}

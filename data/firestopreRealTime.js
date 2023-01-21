@@ -97,6 +97,7 @@ function updateLastPerformedDate(key, date) {
 }
 
 async function deleteDocument(collection, id) {
+  console.log("deleting document", collection, id);
   const db = getDatabase();
 
   const tempRef = ref(db, `${collection}/${id}`);

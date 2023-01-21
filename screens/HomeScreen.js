@@ -46,7 +46,6 @@ const HomeScreen = () => {
             {workouts.map((workout) => {
               return (
                 <WorkoutCardWithPressMenu
-                  key={workout.key}
                   workout={workout}
                   SetItemChange={SetItemChange}
                 />
